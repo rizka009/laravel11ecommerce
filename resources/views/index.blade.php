@@ -741,9 +741,9 @@
               </div>
 
               <div class="pc__info position-relative">
-                <h6 class="pc__title"><a href="details.html">Cropped Faux Leather Jacket</a></h6>
+                <h6 class="pc__title"><a href="details.html">Bolu Gulung Mini</a></h6>
                 <div class="product-card__price d-flex align-items-center">
-                  <span class="money price text-secondary">$29</span>
+                  <span class="money price text-secondary">Rp100.000</span>
                 </div>
 
                 <div
@@ -777,9 +777,9 @@
               </div>
 
               <div class="pc__info position-relative">
-                <h6 class="pc__title"><a href="details.html">Calvin Shorts</a></h6>
+                <h6 class="pc__title"><a href="details.html">Brownies Napoleon</a></h6>
                 <div class="product-card__price d-flex align-items-center">
-                  <span class="money price text-secondary">$62</span>
+                  <span class="money price text-secondary">Rp100.000</span>
                 </div>
 
                 <div
@@ -814,9 +814,9 @@
               </div>
 
               <div class="pc__info position-relative">
-                <h6 class="pc__title"><a href="details.html">Kirby T-Shirt</a></h6>
+                <h6 class="pc__title"><a href="details.html">Lapis Napoleon</a></h6>
                 <div class="product-card__price d-flex align-items-center">
-                  <span class="money price text-secondary">$17</span>
+                  <span class="money price text-secondary">Rp100.000</span>
                 </div>
 
                 <div
@@ -847,14 +847,14 @@
                   <img loading="lazy" src="{{ asset('assets/images/home/demo3/sl5.jpg') }}" width="330" height="400"
                     alt="Cropped Faux leather Jacket" class="pc__img">
                 </a>
-                <div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">-67%</div>
+                <div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">-10%</div>
               </div>
 
               <div class="pc__info position-relative">
-                <h6 class="pc__title">Cableknit Shawl</h6>
+                <h6 class="pc__title">Bolu Gulung Mini</h6>
                 <div class="product-card__price d-flex align-items-center">
-                  <span class="money price-old">$129</span>
-                  <span class="money price text-secondary">$99</span>
+                  <span class="money price-old">Rp100.000</span>
+                  <span class="money price text-secondary">Rp90.000</span>
                 </div>
 
                 <div
@@ -888,9 +888,9 @@
               </div>
 
               <div class="pc__info position-relative">
-                <h6 class="pc__title"><a href="details.html">Cropped Faux Leather Jacket</a></h6>
+                <h6 class="pc__title"><a href="details.html">Bolu Gulung Mini</a></h6>
                 <div class="product-card__price d-flex align-items-center">
-                  <span class="money price text-secondary">$29</span>
+                  <span class="money price text-secondary">Rp100.000</span>
                 </div>
 
                 <div
@@ -924,9 +924,9 @@
               </div>
 
               <div class="pc__info position-relative">
-                <h6 class="pc__title"><a href="details.html">Calvin Shorts</a></h6>
+                <h6 class="pc__title"><a href="details.html">Bolu Gulung Mini</a></h6>
                 <div class="product-card__price d-flex align-items-center">
-                  <span class="money price text-secondary">$62</span>
+                  <span class="money price text-secondary">Rp100.000</span>
                 </div>
 
                 <div
@@ -960,9 +960,9 @@
               </div>
 
               <div class="pc__info position-relative">
-                <h6 class="pc__title"><a href="details.html">Kirby T-Shirt</a></h6>
+                <h6 class="pc__title"><a href="details.html">Bolu Gulung Mini</a></h6>
                 <div class="product-card__price d-flex align-items-center">
-                  <span class="money price text-secondary">$17</span>
+                  <span class="money price text-secondary">Rp100.000</span>
                 </div>
 
                 <div
@@ -996,10 +996,10 @@
               </div>
 
               <div class="pc__info position-relative">
-                <h6 class="pc__title">Cableknit Shawl</h6>
+                <h6 class="pc__title">Lapis Napoleon</h6>
                 <div class="product-card__price d-flex align-items-center">
-                  <span class="money price-old">$129</span>
-                  <span class="money price text-secondary">$99</span>
+                  <span class="money price-old">Rp100.000</span>
+                  <span class="money price text-secondary">Rp90.000</span>
                 </div>
 
                 <div

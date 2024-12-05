@@ -66,7 +66,7 @@
         </div>
 
 
-        <div class="accordion" id="color-filters">
+        {{-- <div class="accordion" id="color-filters">
           <div class="accordion-item mb-4 pb-3">
             <h5 class="accordion-header" id="accordion-heading-1">
               <button class="accordion-button p-0 border-0 fs-5 text-uppercase" type="button" data-bs-toggle="collapse"
@@ -98,10 +98,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
 
 
-        <div class="accordion" id="size-filters">
+        {{-- <div class="accordion" id="size-filters">
           <div class="accordion-item mb-4 pb-3">
             <h5 class="accordion-header" id="accordion-heading-size">
               <button class="accordion-button p-0 border-0 fs-5 text-uppercase" type="button" data-bs-toggle="collapse"
@@ -129,7 +129,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
 
 
         <div class="accordion" id="brand-filters">
@@ -189,11 +189,11 @@
               <div class="price-range__info d-flex align-items-center mt-2">
                 <div class="me-auto">
                   <span class="text-secondary">Min Price: </span>
-                  <span class="price-range__min">$1</span>
+                  <span class="price-range__min">Rp50000</span>
                 </div>
                 <div>
                   <span class="text-secondary">Max Price: </span>
-                  <span class="price-range__max">$500</span>
+                  <span class="price-range__max">Rp200000</span>
                 </div>
               </div>
             </div>
@@ -315,7 +315,7 @@
               <span class="text-uppercase fw-medium me-2">View</span>
               <button class="btn-link fw-medium me-2 js-cols-size" data-target="products-grid" data-cols="2">2</button>
               <button class="btn-link fw-medium me-2 js-cols-size" data-target="products-grid" data-cols="3">3</button>
-              <button class="btn-link fw-medium js-cols-size" data-target="products-grid" data-cols="4">4</button>
+              <button class="btn-link fw-medium js-cols-size" data-target="products-grid" data-cols="6">6</button>
             </div>
 
             <div class="shop-filter d-flex align-items-center order-0 order-md-3 d-lg-none">
