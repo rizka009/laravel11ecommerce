@@ -63,13 +63,13 @@
                   <div class="shopping-cart__product-item__detail">
                     <h4>{{ $item->name }}</h4>
                     <ul class="shopping-cart__product-item__options">
-                      <li>Color: Yellow</li>
-                      <li>Size: L</li>
+                      {{-- <li>Color: Yellow</li>
+                      <li>Size: L</li> --}}
                     </ul>
                   </div>
                 </td>
                 <td>
-                  <span class="shopping-cart__product-price">${{ $item->price }}</span>
+                  <span class="shopping-cart__product-price">Rp. {{ $item->price }}</span>
                 </td>
                 <td>
                   <div class="qty-control position-relative">
@@ -88,7 +88,7 @@
                   </div>
                 </td>
                 <td>
-                  <span class="shopping-cart__subtotal">${{ $item->subTotal() }}</span>
+                  <span class="shopping-cart__subtotal">Rp. {{ $item->subTotal() }}</span>
                 </td>
                 <td>
                     <form method="POST" action="{{ route('cart.item.remove',['rowId'=>$item->rowId]) }}">
@@ -148,15 +148,15 @@
                     <tbody>
                     <tr>
                         <th>Subtotal</th>
-                        <td>${{ Cart::instance('cart')->subTotal() }}</td>
+                        <td>Rp. {{ Cart::instance('cart')->subTotal() }}</td>
                     </tr>
                     <tr>
                         <th>Discount {{ Session::get('coupon')['code'] }}</th>
-                        <td>${{ Session::get('discounts')['discount'] }}</td>
+                        <td>Rp. {{ Session::get('discounts')['discount'] }}</td>
                     </tr>
                     <tr>
                         <th>Subtotal After Discount</th>
-                        <td>${{ Session::get('discounts')['subtotal'] }}</td>
+                        <td>Rp. {{ Session::get('discounts')['subtotal'] }}</td>
                     </tr>
                     <tr>
                         <th>Shipping</th>
@@ -164,11 +164,11 @@
                     </tr>
                     <tr>
                         <th>VAT</th>
-                        <td>${{ Session::get('discounts')['tax'] }}</td>
+                        <td>Rp. {{ Session::get('discounts')['tax'] }}</td>
                     </tr>
                     <tr>
                         <th>Total</th>
-                        <td>${{ Session::get('discounts')['total'] }}</td>
+                        <td>Rp. {{ Session::get('discounts')['total'] }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -177,7 +177,7 @@
                     <tbody>
                     <tr>
                         <th>Subtotal</th>
-                        <td>${{ Cart::instance('cart')->subTotal() }}</td>
+                        <td>Rp. {{ Cart::instance('cart')->subTotal() }}</td>
                     </tr>
                     <tr>
                         <th>Shipping</th>
@@ -185,11 +185,11 @@
                     </tr>
                     <tr>
                         <th>VAT</th>
-                        <td>${{ Cart::instance('cart')->tax() }}</td>
+                        <td>Rp. {{ Cart::instance('cart')->tax() }}</td>
                     </tr>
                     <tr>
                         <th>Total</th>
-                        <td>${{ Cart::instance('cart')->total() }}</td>
+                        <td>Rp. {{ Cart::instance('cart')->total() }}</td>
                     </tr>
                     </tbody>
                 </table>

@@ -219,7 +219,7 @@ class CartController extends Controller
 
     public function setAmountforCheckout()
     {
-        if (!Cart::instance('cart')->content()->count()>0)
+        if (!Cart::instance('cart')->content()->count() > 0)
         {
             Session::forget('checkout');
             return;
@@ -227,24 +227,32 @@ class CartController extends Controller
 
         if (Session::has('coupon'))
         {
-            Session::put('checkout',[
+            $subtotal = str_replace(',', '', Cart::instance('cart')->subtotal());
+            $tax = str_replace(',', '', Cart::instance('cart')->tax());
+            $total = str_replace(',', '', Cart::instance('cart')->total());
+
+            Session::put('checkout', [
                 'discount' => Session::get('discounts')['discount'],
-                'subtotal' => Session::get('discounts')['subtotal'],
-                'tax' => Session::get('discounts')['tax'],
-                'total' => Session::get('discounts')['total'],
+                'subtotal' => $subtotal,
+                'tax' => $tax,
+                'total' => $total,
             ]);
         }
         else
         {
-            Session::put('checkout',[
-                'discount' => 0,
-                'subtotal' => Cart::instance('cart')->subtotal(),
-                'tax' => Cart::instance('cart')->tax(),
-                'total' => Cart::instance('cart')->total(),
-            ]);
+            $subtotal = str_replace(',', '', Cart::instance('cart')->subtotal());
+            $tax = str_replace(',', '', Cart::instance('cart')->tax());
+            $total = str_replace(',', '', Cart::instance('cart')->total());
 
+            Session::put('checkout', [
+                'discount' => 0,
+                'subtotal' => $subtotal,
+                'tax' => $tax,
+                'total' => $total,
+            ]);
         }
     }
+
 
     public function order_confirmation()
     {

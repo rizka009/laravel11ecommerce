@@ -3,7 +3,7 @@
 <div class="main-content-inner">
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>All Products</h3>
+            <h3>Slides</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
                     <a href="{{ route('admin.index') }}">
@@ -14,7 +14,7 @@
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">All Products</div>
+                    <div class="text-tiny">Slides</div>
                 </li>
             </ul>
         </div>
@@ -32,10 +32,10 @@
                         </div>
                     </form>
                 </div>
-                <a class="tf-button style-1 w208" href="{{ route('admin.product.add') }}"><i
+                <a class="tf-button style-1 w208" href="{{ route('admin.slide.add') }}"><i
                         class="icon-plus"></i>Add new</a>
             </div>
-            <div class="table-responsive">
+            <div class="wg-table table-all-user">
                 @if(Session::has('status'))
                     <p class="alert alert-success">{{ Session::get('status') }}</p>
                 @endif
@@ -43,52 +43,35 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>SalePrice</th>
-                            <th>SKU</th>
-                            <th>Category</th>
-                            <th>Brand</th>
-                            <th>Featured</th>
-                            <th>Stock</th>
-                            <th>Quantity</th>
+                            <th>Image</th>
+                            <th>Tagline</th>
+                            <th>Title</th>
+                            <th>Subtitle</th>
+                            <th>Link</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $product )
+                        @foreach ($slides as $slide)
                         <tr>
-                            <td>{{ $product->id }}</td>
+                            <td>{{ $slide->id }}</td>
                             <td class="pname">
                                 <div class="image">
-                                    <img src="{{ asset('uploads/products/thumbnails') }}/{{ $product->image }}" alt="{{ $product->name }}" class="image">
-                                </div>
-                                <div class="name">
-                                    <a href="#" class="body-title-2">{{ $product->name }}</a>
-                                    <div class="text-tiny mt-3">{{ $product->slug }}</div>
+                                    <img src="{{ asset('uploads/slides') }}/{{ $slide->image }}" alt="" class="{{ $slide->title }}">
                                 </div>
                             </td>
-                            <td>Rp. {{ $product->regular_price }}</td>
-                            <td>Rp. {{ $product->sale_price }}</td>
-                            <td>{{ $product->SKU }}</td>
-                            <td>{{ $product->category->name }}</td>
-                            <td>{{ $product->brand->name }}</td>
-                            <td>{{ $product->featured == 0 ? "No":"Yes" }}</td>
-                            <td>{{ $product->stock_status }}</td>
-                            <td>{{ $product->quantity }}</td>
+                            <td>{{ $slide->tagline }}</td>
+                            <td>{{ $slide->title }}</td>
+                            <td>{{ $slide->subtitle }}</td>
+                            <td>{{ $slide->link }}</td>
                             <td>
                                 <div class="list-icon-function">
-                                    <a href="#" target="_blank">
-                                        <div class="item eye">
-                                            <i class="icon-eye"></i>
-                                        </div>
-                                    </a>
-                                    <a href="{{ route('admin.product.edit',['id'=>$product->id]) }}">
+                                    <a href="{{ route('admin.slide.edit',['id'=>$slide->id]) }}">
                                         <div class="item edit">
                                             <i class="icon-edit-3"></i>
                                         </div>
                                     </a>
-                                    <form action="{{ route('admin.product.delete',['id'=>$product->id]) }}" method="POST">
+                                    <form action="{{ route('admin.slide.delete',['id'=>$slide->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <div class="item text-danger delete">
@@ -102,11 +85,9 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="divider"></div>
             <div class="flex items-center justify-between flex-wrap gap10 wgp-pagination">
-
-                {{ $products->links('pagination::bootstrap-5') }}
+                {{ $slides->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>
@@ -114,24 +95,25 @@
 @endsection
 
 @push('scripts')
-<script>
-    $(function(){
-        $('.delete').on('click',function(e){
-            e.preventDefault();
-            var form = $(this).closest('form');
-            swal({
-                title: "are you sure?",
-                text: "You want to delete this record?",
-                type: "warning",
-                buttons: ["No","Yes"],
-                confirmButtonColor: "#dc3545"
-            }).then(function(result){
-                if (result) {
-                    form.submit();
-                }
+    <script>
+        $(function(){
+            $('.delete').on('click',function(e){
+                e.preventDefault();
+                var form = $(this).closest('form');
+                swal({
+                    title: "are you sure?",
+                    text: "You want to delete this record?",
+                    type: "warning",
+                    buttons: ["No","Yes"],
+                    confirmButtonColor: "#dc3545"
+                }).then(function(result){
+                    if (result) {
+                        form.submit();
+                    }
+                });
             });
-        });
-    })
-</script>
+        })
+    </script>
 
 @endpush
+

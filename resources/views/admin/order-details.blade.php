@@ -32,6 +32,9 @@
                 <a class="tf-button style-1 w208" href="{{ route('admin.orders') }}">Back</a>
             </div>
             <div class="table-responsive">
+                @if (Session::has('status'))
+                    <p class="alert alert-success">{{ Session::get('status') }}</p>
+                @endif
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th>Order No</th>
@@ -53,11 +56,11 @@
                         <th>Order Status</th>
                         <td colspan="5">
                             @if ($order->status == 'delivered')
-                                <span class="bedge bg-success">Delivered</span>
-                            @elseif ($order->status == 'cenceled')
-                                <span class="bedge bg-danger">Cenceled</span>
+                                <span class="badge bg-success text-white">Delivered</span>
+                            @elseif ($order->status == 'canceled')
+                                <span class="bedge bg-danger text-white">Canceled</span>
                             @else
-                                <span class="bedge bg-warning">Ordered</span>
+                                <span class="bedge bg-warning text-white">Ordered</span>
                             @endif
                         </td>
                     </tr>
@@ -98,7 +101,7 @@
                                         class="body-title-2">{{ $item->product->name }}</a>
                                 </div>
                             </td>
-                            <td class="text-center">${{ $item->price }}</td>
+                            <td class="text-center">Rp. {{ $item->price }}</td>
                             <td class="text-center">{{ $item->quantity }}</td>
                             <td class="text-center">{{ $item->product->SKU }}</td>
                             <td class="text-center">{{ $item->product->category->name }}</td>
@@ -146,15 +149,15 @@
                 <tbody>
                     <tr>
                         <th>Subtotal</th>
-                        <td>${{ $order->subtotal }}</td>
+                        <td>Rp. {{ $order->subtotal }}</td>
                         <th>Tax</th>
-                        <td>${{ $order->tax }}</td>
+                        <td>Rp. {{ $order->tax }}</td>
                         <th>Discount</th>
-                        <td>${{ $order->discount }}</td>
+                        <td>Rp. {{ $order->discount }}</td>
                     </tr>
                     <tr>
                         <th>Total</th>
-                        <td>${{ $order->total }}</td>
+                        <td>Rp. {{ $order->total }}</td>
                         <th>Payment Mode</th>
                         <td>{{ $transaction->mode }}</td>
                         <th>Status</th>
@@ -173,6 +176,30 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="wg-box mt-5">
+            <h5>Update Order Status</h5>
+            <form action="{{ route('admin.order.status.update') }}" method="POST">
+                @csrf
+                @method('PUT')
+                <input type="hidden" name="order_id" value="{{ $order->id }}"/>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="select">
+                            <select name="order_status" id="order_status">
+                                <option value="ordered" {{ $order->status == 'ordered' ? "selected":"" }}>Ordered</option>
+                                <option value="delivered {{ $order->status == 'delivered' ? "selected":"" }}">Delivered</option>
+                                <option value="canceled" {{ $order->status == 'canceled' ? "selected":"" }}>Canceled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary tf-button w208">Update Status</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
     </div>
 </div>
 @endsection

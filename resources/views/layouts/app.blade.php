@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Allura&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
       integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
@@ -52,21 +53,7 @@
         <path
           d="M13.5625 7.44043C13.5625 3.69434 10.5273 0.65918 6.78125 0.65918C3.03516 0.65918 0 3.69434 0 7.44043C0 10.3389 1.77734 12.7725 4.29297 13.7568C4.23828 13.2373 4.18359 12.417 4.32031 11.8154C4.45703 11.2959 5.11328 8.45215 5.11328 8.45215C5.11328 8.45215 4.92188 8.04199 4.92188 7.44043C4.92188 6.51074 5.46875 5.7998 6.15234 5.7998C6.72656 5.7998 7 6.2373 7 6.75684C7 7.33105 6.61719 8.20605 6.42578 9.02637C6.28906 9.68262 6.78125 10.2295 7.4375 10.2295C8.64062 10.2295 9.57031 8.97168 9.57031 7.13965C9.57031 5.49902 8.39453 4.37793 6.75391 4.37793C4.8125 4.37793 3.69141 5.82715 3.69141 7.30371C3.69141 7.90527 3.91016 8.53418 4.18359 8.8623C4.23828 8.91699 4.23828 8.99902 4.23828 9.05371C4.18359 9.27246 4.04688 9.7373 4.04688 9.81934C4.01953 9.95605 3.9375 9.9834 3.80078 9.92871C2.95312 9.51855 2.43359 8.28809 2.43359 7.27637C2.43359 5.14355 3.99219 3.1748 6.91797 3.1748C9.26953 3.1748 11.1016 4.87012 11.1016 7.1123C11.1016 9.43652 9.625 11.3232 7.57422 11.3232C6.89062 11.3232 6.23438 10.9678 6.01562 10.5303C6.01562 10.5303 5.6875 11.8428 5.60547 12.1436C5.44141 12.7451 5.03125 13.4834 4.75781 13.9209C5.38672 14.1396 6.07031 14.2217 6.78125 14.2217C10.5273 14.2217 13.5625 11.1865 13.5625 7.44043Z" />
       </symbol>
-      <symbol id="icon_search" viewBox="0 0 20 20">
-        <g clip-path="url(#clip0_6_7)">
-          <path
-            d="M8.80758 0C3.95121 0 0 3.95121 0 8.80758C0 13.6642 3.95121 17.6152 8.80758 17.6152C13.6642 17.6152 17.6152 13.6642 17.6152 8.80758C17.6152 3.95121 13.6642 0 8.80758 0ZM8.80758 15.9892C4.84769 15.9892 1.62602 12.7675 1.62602 8.80762C1.62602 4.84773 4.84769 1.62602 8.80758 1.62602C12.7675 1.62602 15.9891 4.84769 15.9891 8.80758C15.9891 12.7675 12.7675 15.9892 8.80758 15.9892Z"
-            fill="currentColor" />
-          <path
-            d="M19.7618 18.6122L15.1006 13.9509C14.783 13.6333 14.2686 13.6333 13.951 13.9509C13.6334 14.2683 13.6334 14.7832 13.951 15.1005L18.6122 19.7618C18.771 19.9206 18.9789 20 19.187 20C19.3949 20 19.603 19.9206 19.7618 19.7618C20.0795 19.4444 20.0795 18.9295 19.7618 18.6122Z"
-            fill="currentColor" />
-        </g>
-        <defs>
-          <clipPath id="clip0_6_7">
-            <rect width="20" height="20" fill="white" />
-          </clipPath>
-        </defs>
-      </symbol>
+      
       <symbol id="icon_user" viewBox="0 0 20 20">
         <g clip-path="url(#clip0_6_29)">
           <path
@@ -258,6 +245,7 @@
       .logo__image {
         max-width: 220px;
       }
+
     </style>
     <div class="header-mobile header_sticky">
       <div class="container d-flex align-items-center h-100">
@@ -409,7 +397,7 @@
                 <a href="about.html" class="navigation__link">About</a>
               </li>
               <li class="navigation__item">
-                <a href="contact.html" class="navigation__link">Contact</a>
+                <a href="{{ route('home.contact') }}" class="navigation__link">Contact</a>
               </li>
             </ul>
           </nav>
@@ -424,40 +412,6 @@
                   </svg>
                   <i class="btn-icon btn-close-lg"></i>
                 </a>
-              </div>
-
-              <div class="search-popup js-hidden-content">
-                <form action="#" method="GET" class="search-field container">
-                  <p class="text-uppercase text-secondary fw-medium mb-4">What are you looking for?</p>
-                  <div class="position-relative">
-                    <input class="search-field__input search-popup__input w-100 fw-medium" type="text"
-                      name="search-keyword" placeholder="Search products" />
-                    <button class="btn-icon search-popup__submit" type="submit">
-                      <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <use href="#icon_search" />
-                      </svg>
-                    </button>
-                    <button class="btn-icon btn-close-lg search-popup__reset" type="reset"></button>
-                  </div>
-
-                  <div class="search-popup__results">
-                    <div class="sub-menu search-suggestion">
-                      <h6 class="sub-menu__title fs-base">Quicklinks</h6>
-                      <ul class="sub-menu__list list-unstyled">
-                        <li class="sub-menu__item"><a href="shop2.html" class="menu-link menu-link_us-s">New Arrivals</a>
-                        </li>
-                        <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Dresses</a></li>
-                        <li class="sub-menu__item"><a href="shop3.html" class="menu-link menu-link_us-s">Accessories</a>
-                        </li>
-                        <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Footwear</a></li>
-                        <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Sweatshirt</a></li>
-                      </ul>
-                    </div>
-
-                    <div class="search-result row row-cols-5"></div>
-                  </div>
-                </form>
               </div>
             </div>
 
@@ -677,6 +631,7 @@
     <script src="{{ asset('assets/js/plugins/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/bootstrap-slider.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/swiper.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/countdown.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>

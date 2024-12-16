@@ -184,8 +184,8 @@
             </h5>
             <div id="accordion-filter-price" class="accordion-collapse collapse show border-0"
               aria-labelledby="accordion-heading-price" data-bs-parent="#price-filters">
-              <input class="price-range-slider" type="text" name="price_range" value="" data-slider-min="1"
-                data-slider-max="500" data-slider-step="5" data-slider-value="[{{ $min_price }},{{ $max_price }}]" data-currency="$" />
+              <input class="price-range-slider" type="text" name="price_range" value="" data-slider-min="50000"
+                data-slider-max="200000" data-slider-step="5" data-slider-value="[{{ $min_price }},{{ $max_price }}]" data-currency="Rp" />
               <div class="price-range__info d-flex align-items-center mt-2">
                 <div class="me-auto">
                   <span class="text-secondary">Min Price: </span>
@@ -263,9 +263,8 @@
                   <div class="slideshow-text container p-3 p-xl-5">
                     <h2
                       class="text-uppercase section-title fw-normal mb-3 animate animate_fade animate_btt animate_delay-2">
-                      Women's <br /><strong>ACCESSORIES</strong></h2>
-                    <p class="mb-0 animate animate_fade animate_btt animate_delay-5">Accessories are the best way to
-                      update your look. Add a title edge with new styles and new colors, or go for timeless pieces.</h6>
+                      Napoleon <br /><strong>Cake</strong></h2>
+                    <p class="mb-0 animate animate_fade animate_btt animate_delay-5">Cake Terbaik dengan Kualitas Terjamin.</h6>
                   </div>
                 </div>
                 <div class="slide-split_media position-relative">
@@ -330,7 +329,7 @@
           </div>
         </div>
 
-        <div class="products-grid row row-cols-2 row-cols-md-3" id="products-grid">
+        <div class="products-grid row row-cols-2 row-cols-md-4" id="products-grid">
             @foreach ($products as $product)
           <div class="product-card-wrapper">
             <div class="product-card mb-3 mb-md-4 mb-xxl-5">
@@ -375,9 +374,9 @@
                 <div class="product-card__price d-flex">
                   <span class="money price">
                     @if ($product->sale_price)
-                        <s>${{ $product->regular_price }}</s>${{ $product->sale_price }}
+                        <s>Rp. {{ $product->regular_price }}</s> Rp. {{ $product->sale_price }}
                     @else
-                        ${{ $product->regular_price }}
+                        Rp. {{ $product->regular_price }}
                     @endif
                   </span>
                 </div>
