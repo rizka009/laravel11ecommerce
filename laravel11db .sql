@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2024 at 04:32 AM
+-- Generation Time: Dec 29, 2024 at 05:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,8 +50,10 @@ CREATE TABLE `addresses` (
 --
 
 INSERT INTO `addresses` (`id`, `user_id`, `name`, `phone`, `locality`, `address`, `city`, `state`, `country`, `landmark`, `zip`, `type`, `isdefault`, `created_at`, `updated_at`) VALUES
-(1, 2, 'rizka', '1234567890', 'Pauh', '123', 'padang', 'indonesia', 'indonesia', 'kos', '123456', 'home', 1, '2024-11-25 01:54:11', '2024-11-25 01:54:11'),
-(3, 4, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 1, '2024-12-04 21:22:23', '2024-12-21 06:31:45');
+(3, 4, 'aulia razak', '1234567895', 'jl.22156', '12345', 'padang', 'sumbar', 'indonesia', 'kos-kosan', '123457', 'home', 1, '2024-12-04 21:22:23', '2024-12-28 23:57:10'),
+(5, 7, 'Librian', '0831852797', 'jl.22159', '12345s', 'padang abna', 'sumbar bana', 'indonesia', 'kos-kosan cewe', '123458', 'home', 1, '2024-12-29 00:08:27', '2024-12-29 01:18:58'),
+(6, 8, 'karin', '12345678909', 'jl.2215', '12345s', 'padang', 'sumbar', 'indonesia', 'kos-kosan cewe', '123456', 'home', 1, '2024-12-29 04:37:23', '2024-12-29 04:41:01'),
+(8, 10, 'user', '081234567891', 'jl.221', '12345s', 'padang', 'sumbar', 'indonesia', 'kos-kosan', '123456', 'home', 1, '2024-12-29 07:58:48', '2024-12-29 07:58:48');
 
 -- --------------------------------------------------------
 
@@ -87,6 +89,14 @@ CREATE TABLE `cache` (
   `value` mediumtext NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('karin|127.0.0.1', 'i:1;', 1735476403),
+('karin|127.0.0.1:timer', 'i:1735476403;', 1735476403);
 
 -- --------------------------------------------------------
 
@@ -149,7 +159,8 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `name`, `email`, `phone`, `comment`, `created_at`, `updated_at`) VALUES
-(2, 'admin', 'admin@gmail.com', '08123456789', 'Project Ini Sangat Bagus', '2024-12-28 03:05:09', '2024-12-28 03:05:09');
+(2, 'admin', 'admin@gmail.com', '08123456789', 'Project Ini Sangat Bagus', '2024-12-28 03:05:09', '2024-12-28 03:05:09'),
+(3, 'user', 'user@gmail.com', '083185279526', 'saya sangat puas belanja di sini', '2024-12-29 08:00:13', '2024-12-29 08:00:13');
 
 -- --------------------------------------------------------
 
@@ -174,7 +185,8 @@ CREATE TABLE `coupons` (
 
 INSERT INTO `coupons` (`id`, `code`, `type`, `value`, `cart_value`, `expiry_date`, `created_at`, `updated_at`) VALUES
 (2, 'OFF30', 'percent', 30.00, 150.00, '2024-11-28', '2024-11-21 05:01:40', '2024-11-21 05:01:40'),
-(4, 'OFF20', 'fixed', 10.00, 400.00, '2024-11-30', '2024-11-24 03:48:50', '2024-11-24 03:48:50');
+(4, 'OFF20', 'fixed', 10.00, 400.00, '2024-11-30', '2024-11-24 03:48:50', '2024-11-24 03:48:50'),
+(5, 'SALEJUMAT', 'percent', 10.00, 75000.00, '2025-01-03', '2024-12-29 08:05:14', '2024-12-29 08:05:14');
 
 -- --------------------------------------------------------
 
@@ -332,7 +344,11 @@ INSERT INTO `orders` (`id`, `user_id`, `subtotal`, `discount`, `tax`, `total`, `
 (16, 4, 90000.00, 0.00, 18900.00, 108900.00, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 'ordered', 0, NULL, NULL, '2024-12-27 21:54:55', '2024-12-27 21:54:55'),
 (17, 4, 90000.00, 0.00, 18900.00, 108900.00, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 'ordered', 0, NULL, NULL, '2024-12-27 21:55:42', '2024-12-27 21:55:42'),
 (20, 4, 450000.00, 0.00, 94500.00, 544500.00, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 'ordered', 0, NULL, NULL, '2024-12-27 22:18:04', '2024-12-27 22:18:04'),
-(23, 4, 180000.00, 0.00, 37800.00, 217800.00, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 'delivered', 0, '2024-12-28', NULL, '2024-12-27 22:43:26', '2024-12-28 01:34:14');
+(23, 4, 180000.00, 0.00, 37800.00, 217800.00, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 'delivered', 0, '2024-12-28', NULL, '2024-12-27 22:43:26', '2024-12-28 01:34:14'),
+(25, 7, 9000000.00, 0.00, 900000.00, 9900000.00, 'adik', '0831852795', 'jl.2215', '12345', 'padang', 'sumbar', 'indonesia', 'kos-kosan', '123456', 'home', 'canceled', 0, NULL, '2024-12-29', '2024-12-29 00:08:27', '2024-12-29 01:36:51'),
+(26, 8, 9000000.00, 0.00, 900000.00, 9900000.00, 'karin', '1234567890', 'jl.2215', '12345s', 'padang', 'sumbar', 'indonesia', 'kos-kosan cewe', '123456', 'home', 'ordered', 0, NULL, NULL, '2024-12-29 04:37:23', '2024-12-29 04:37:23'),
+(27, 8, 18000000.00, 0.00, 1800000.00, 19800000.00, 'karin', '12345678909', 'jl.2215', '12345s', 'padang', 'sumbar', 'indonesia', 'kos-kosan cewe', '123456', 'home', 'ordered', 0, NULL, NULL, '2024-12-29 06:06:52', '2024-12-29 06:06:52'),
+(29, 10, 36000000.00, 0.00, 3600000.00, 39600000.00, 'user', '081234567891', 'jl.221', '12345s', 'padang', 'sumbar', 'indonesia', 'kos-kosan', '123456', 'home', 'delivered', 0, '2024-12-29', NULL, '2024-12-29 07:58:48', '2024-12-29 08:04:17');
 
 -- --------------------------------------------------------
 
@@ -361,13 +377,11 @@ INSERT INTO `order_items` (`id`, `product_id`, `order_id`, `price`, `quantity`, 
 (15, 29, 7, 90000.00, 1, NULL, 0, '2024-12-04 21:42:57', '2024-12-04 21:42:57'),
 (16, 28, 8, 90000.00, 1, NULL, 0, '2024-12-04 22:36:39', '2024-12-04 22:36:39'),
 (17, 30, 9, 90000.00, 1, NULL, 0, '2024-12-05 07:37:40', '2024-12-05 07:37:40'),
-(23, 39, 15, 90000.00, 1, NULL, 0, '2024-12-27 09:46:09', '2024-12-27 09:46:09'),
 (24, 21, 15, 90000.00, 1, NULL, 0, '2024-12-27 09:46:09', '2024-12-27 09:46:09'),
 (25, 27, 15, 90000.00, 1, NULL, 0, '2024-12-27 09:46:09', '2024-12-27 09:46:09'),
-(26, 39, 16, 90000.00, 1, NULL, 0, '2024-12-27 21:54:55', '2024-12-27 21:54:55'),
-(27, 39, 17, 90000.00, 1, NULL, 0, '2024-12-27 21:55:42', '2024-12-27 21:55:42'),
 (28, 42, 20, 90000.00, 5, NULL, 0, '2024-12-27 22:18:04', '2024-12-27 22:18:04'),
-(29, 40, 23, 90000.00, 2, NULL, 0, '2024-12-27 22:43:26', '2024-12-27 22:43:26');
+(35, 30, 29, 90000.00, 2, NULL, 0, '2024-12-29 07:58:48', '2024-12-29 07:58:48'),
+(36, 29, 29, 90000.00, 2, NULL, 0, '2024-12-29 07:58:48', '2024-12-29 07:58:48');
 
 -- --------------------------------------------------------
 
@@ -425,25 +439,18 @@ INSERT INTO `products` (`id`, `name`, `slug`, `short_description`, `description`
 (20, 'Lapis Ubi Ungu', 'lapis-ubi-ungu', 'Ini adalah Lapis Ubi Ungu', 'Ini adalah Lapis Ubi Ungu', 100000.00, 90000.00, 'LN-UbiU', 'instock', 1, 10, '1733367480.jpg', '', 6, 8, NULL, NULL, '2024-12-04 19:58:00', '2024-12-04 19:58:00'),
 (21, 'Napoleon Caramel', 'napoleon-caramel', 'ini adalah Napoleon Caramel', 'ini adalah Napoleon Caramel', 100000.00, 90000.00, 'NC-Caramel', 'instock', 1, 10, '1733367920.jpg', '', 7, 8, NULL, NULL, '2024-12-04 20:05:20', '2024-12-04 20:05:20'),
 (22, 'Napoleon Durian', 'napoleon-durian', 'ini adalah Napoleon Durian', 'ini adalah Napoleon Durian', 100000.00, 90000.00, 'NC-Durian', 'instock', 1, 10, '1733367997.jpg', '', 7, 8, NULL, NULL, '2024-12-04 20:06:37', '2024-12-04 20:06:37'),
-(23, 'Napoleon Extra Cheese', 'napoleon-extra-cheese', 'ini adalah Napoleon Extra Cheese', 'ini adalah Napoleon Extra Cheese', 100000.00, 90000.00, 'NC-EC', 'instock', 1, 10, '1733368105.jpg', '', 7, 8, NULL, NULL, '2024-12-04 20:08:25', '2024-12-04 20:08:25'),
-(24, 'Napoleon Great Chocolate', 'napoleon-great-chocolate', 'ini adalah Napoleon Great Chocolate', 'ini adalah Napoleon Great Chocolate', 100000.00, 90000.00, 'NC-GreatC', 'instock', 1, 10, '1733368220.jpg', '', 7, 8, NULL, NULL, '2024-12-04 20:10:20', '2024-12-04 20:10:20'),
-(25, 'Napoleon Green Tea', 'napoleon-green-tea', 'ini adalah Napoleon Green Tea\"', 'ini adalah Napoleon Green Tea', 100000.00, 90000.00, 'NC-GT', 'instock', 1, 10, '1733368315.jpg', '1734399076-1.jpg,1734399076-2.jpg,1734399076-3.jpg,1734399076-4.jpg', 7, 8, NULL, NULL, '2024-12-04 20:11:56', '2024-12-16 18:31:17'),
-(26, 'Napoleon Kopi', 'napoleon-kopi', 'ini adalah Napoleon Kopi\"', 'ini adalah Napoleon Kopi', 100000.00, 90000.00, 'NC-Kopi', 'instock', 1, 10, '1733368367.jpg', '1734399020-1.jpg', 7, 8, NULL, NULL, '2024-12-04 20:12:47', '2024-12-16 18:30:20'),
+(23, 'Napoleon Extra Cheese', 'napoleon-extra-cheese', 'ini adalah Napoleon Extra Cheese\"', 'ini adalah Napoleon Extra Cheese', 100000.00, 90000.00, 'NC-EC', 'instock', 1, 10, '1733368105.jpg', '', 7, 8, '2024-12-29', '2024-12-31', '2024-12-04 20:08:25', '2024-12-29 04:16:50'),
+(24, 'Napoleon Great Chocolate', 'napoleon-great-chocolate', 'ini adalah Napoleon Great Chocolate\"', 'ini adalah Napoleon Great Chocolate', 100000.00, 90000.00, 'NC-GreatC', 'instock', 1, 10, '1733368220.jpg', '', 7, 8, '2024-12-29', '2025-01-01', '2024-12-04 20:10:20', '2024-12-29 04:16:25'),
+(25, 'Napoleon Green Tea', 'napoleon-green-tea', 'ini adalah Napoleon Green Tea\"\"', 'ini adalah Napoleon Green Tea', 100000.00, 90000.00, 'NC-GT', 'instock', 1, 10, '1733368315.jpg', '1734399076-1.jpg,1734399076-2.jpg,1734399076-3.jpg,1734399076-4.jpg', 7, 8, '2024-12-29', '2024-12-31', '2024-12-04 20:11:56', '2024-12-29 04:16:09'),
+(26, 'Napoleon Kopi', 'napoleon-kopi', 'ini adalah Napoleon Kopi\"\"', 'ini adalah Napoleon Kopi', 100000.00, 90000.00, 'NC-Kopi', 'instock', 1, 10, '1733368367.jpg', '1734399020-1.jpg', 7, 8, '2024-12-29', '2024-12-31', '2024-12-04 20:12:47', '2024-12-29 04:15:27'),
 (27, 'Napoleon Red Velvet', 'napoleon-red-velvet', 'ini adalah Napoleon Red Velvet\"\"', 'ini adalah Napoleon Red Velvet', 100000.00, 90000.00, 'NC-RV', 'instock', 1, 10, '1733368418.jpg', '1735361544-1.jpg,1735361544-2.jpg,1735361544-3.jpg,1735361544-4.jpg,1735361544-5.jpg', 7, 8, '2024-12-24', '2024-12-31', '2024-12-04 20:13:38', '2024-12-27 21:52:25'),
-(28, 'Napoleon Tiramisu', 'napoleon-tiramisu', 'ini adalah Napoleon Tiramisu\"\"', 'ini adalah Napoleon Tiramisu', 100000.00, 90000.00, 'NC-Tiramisu', 'instock', 1, 10, '1733368487.jpg', '1735374816-1.jpg,1735374816-2.jpg,1735374816-3.jpg,1735374816-4.jpg', 7, 8, '2024-12-28', '2025-01-04', '2024-12-04 20:14:47', '2024-12-28 01:33:39'),
-(29, 'Roll cake Cokelat', 'roll-cake-cokelat', 'ini adalah Roll cake Cokelat\"\"', 'ini adalah Roll cake Cokelat', 100000.00, 90000.00, 'RC-Cokelat', 'instock', 1, 10, '1733368553.jpg', '1735373679-1.jpg,1735373679-2.jpg', 8, 8, '2024-12-28', '2025-01-04', '2024-12-04 20:15:54', '2024-12-28 01:14:40'),
-(30, 'Roll cake Keju', 'roll-cake-keju', 'ini adalah Roll cake Keju\"\"\"', 'ini adalah Roll cake Keju', 100000.00, 90000.00, 'RC-Keju', 'instock', 1, 10, '1733368602.jpg', '1735373613-1.jpg,1735373613-2.jpg,1735373613-3.jpg', 8, 8, '2024-12-28', '2025-01-04', '2024-12-04 20:16:42', '2024-12-28 01:13:36'),
-(39, '1', '1', '\"fedfssdfcs\"\"', 'sdfsdcf', 100000.00, 90000.00, '1', 'instock', 0, 2, '1735317512.jpg', '', 10, 9, '2024-12-28', '2025-01-11', '2024-12-27 09:38:33', '2024-12-27 21:59:02'),
-(40, '3', '3', '\"sxgvfvgd\"', 'dggfgvfd', 100000.00, 90000.00, '3', 'instock', 0, 1, '1735356147.jpg', '1735356147-1.jpg', 7, 8, '2024-12-28', '2024-12-30', '2024-12-27 20:22:27', '2024-12-27 22:43:26'),
+(28, 'Napoleon Tiramisu', 'napoleon-tiramisu', 'ini adalah Napoleon Tiramisu\"\"', 'ini adalah Napoleon Tiramisu', 100000.00, 90000.00, 'NC-Tiramisu', 'instock', 1, 8, '1733368487.jpg', '1735374816-1.jpg,1735374816-2.jpg,1735374816-3.jpg,1735374816-4.jpg', 7, 8, '2024-12-28', '2025-01-04', '2024-12-04 20:14:47', '2024-12-29 07:52:23'),
+(29, 'Roll cake Cokelat', 'roll-cake-cokelat', 'ini adalah Roll cake Cokelat\"\"', 'ini adalah Roll cake Cokelat', 100000.00, 90000.00, 'RC-Cokelat', 'instock', 1, 8, '1733368553.jpg', '1735373679-1.jpg,1735373679-2.jpg', 8, 8, '2024-12-28', '2025-01-04', '2024-12-04 20:15:54', '2024-12-29 07:58:48'),
+(30, 'Roll cake Keju', 'roll-cake-keju', 'ini adalah Roll cake Keju\"\"\"\"', 'ini adalah Roll cake Keju', 100000.00, 90000.00, 'RC-Keju', 'instock', 1, 8, '1733368602.jpg', '1735373613-1.jpg,1735373613-2.jpg,1735373613-3.jpg', 8, 8, '2024-12-28', '2025-01-04', '2024-12-04 20:16:42', '2024-12-29 07:58:48'),
 (41, '4', '4', '\"fedrfe\"', 'rgtergref', 100000.00, 90000.00, '4', 'instock', 0, 3, '1735357333.jpg', '', 7, 9, '2024-12-27', '2024-12-28', '2024-12-27 20:42:14', '2024-12-27 20:45:52'),
 (42, '5', '5', '\"dgidgdgd', 'gdgdgdr', 100000.00, 90000.00, '5', 'outofstock', 0, 0, '1735361989.jpg', '1735361989-1.jpg', 6, 8, '2024-12-28', '2024-12-31', '2024-12-27 21:59:50', '2024-12-27 22:18:04'),
-(43, '6', '6', '\"dgdg', 'dgdgd', 100000.00, 90000.00, '6', 'instock', 0, 4, '1735366004.jpg', '1735366004-1.jpg', 4, 8, '2024-12-28', '2024-12-30', '2024-12-27 23:06:44', '2024-12-27 23:06:44'),
-(44, '7', '7', '\"gsgdg', 'dgdg', 100000.00, 90000.00, '7', 'instock', 0, 7, '1735366689.jpg', '', 10, 9, '2024-12-28', '2024-12-30', '2024-12-27 23:18:10', '2024-12-27 23:18:10'),
 (45, '8', '8', '\"sdfsxdegx', 'cfghcdfbgcf', 100000.00, 90000.00, '8', 'instock', 0, 8, '1735369355.jpg', '1735369355-1.jpg', 4, 9, '2024-12-28', '2024-12-29', '2024-12-28 00:02:35', '2024-12-28 00:02:35'),
-(46, '9', '9', '\"hffh', 'fj', 100000.00, 90000.00, '9', 'instock', 0, 3, '1735376238.jpg', '1735376238-1.jpg', 4, 9, '2024-12-28', '2025-01-04', '2024-12-28 01:57:18', '2024-12-28 01:57:18'),
-(47, '10', '10', '\"dscffcers\"', 'fefecfr', 100000.00, 90000.00, '10', 'outofstock', 0, 5, '1735376396.jpg', '1735376396-1.jpg', 5, 8, '2024-12-28', '2025-01-04', '2024-12-28 01:59:57', '2024-12-28 02:00:08'),
-(48, '11', '11', '\"xasikxcb', 'csdcsdac', 100000.00, 90000.00, '11', 'instock', 0, 5, '1735383902.jpg', '1735383902-1.jpg', 5, 8, '2024-12-28', '2025-01-04', '2024-12-28 04:05:02', '2024-12-28 04:05:02'),
-(49, '12', '12', '\"dfsfsw', 'sdfsedfsw', 100000.00, 90000.00, '12', 'instock', 0, 6, '1735386907.jpg', '1735386907-1.jpg', 10, 8, '2024-12-28', '2025-01-04', '2024-12-28 04:55:07', '2024-12-28 04:55:07');
+(51, 'Bomboloni', 'bomboloni', 'Bomboloni Dua Rasa\"', 'Bomboloni yang enak dengan kualitas terbaik', 75000.00, 60000.00, 'BBL', 'instock', 1, 10, '1735484591.jpg', '1735484591-1.jpg', 4, 9, '2024-12-29', '2025-01-08', '2024-12-29 08:03:14', '2024-12-29 08:03:34');
 
 -- --------------------------------------------------------
 
@@ -465,7 +472,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('oTzpsSx7Q30QxBuAtUvp0WXjkQzocwRNp7asSlPR', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSU5rUW94WjBuS2pTV0FaWXAyNHZHOEx3aW1tYngxUTltTkRnb2NBbiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1735387003);
+('98hK7KyzO5iKEMa3JwOv8XD4s2j1WutLPiHITGSH', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiOXprNHdCY3lZV1U2S3FZM3ZnVkdscm5mNXhySlplMVB1Vk93NmtMdCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1735484766);
 
 -- --------------------------------------------------------
 
@@ -520,7 +527,11 @@ INSERT INTO `transactions` (`id`, `user_id`, `order_id`, `mode`, `status`, `crea
 (15, 4, 15, 'cod', 'pending', '2024-12-27 09:46:09', '2024-12-27 09:46:09'),
 (16, 4, 17, 'cod', 'pending', '2024-12-27 21:55:42', '2024-12-27 21:55:42'),
 (17, 4, 20, 'cod', 'pending', '2024-12-27 22:18:04', '2024-12-27 22:18:04'),
-(18, 4, 23, 'cod', 'approved', '2024-12-27 22:43:26', '2024-12-28 01:34:13');
+(18, 4, 23, 'cod', 'approved', '2024-12-27 22:43:26', '2024-12-28 01:34:13'),
+(19, 7, 25, 'cod', 'pending', '2024-12-29 00:08:27', '2024-12-29 00:08:27'),
+(20, 8, 26, 'cod', 'pending', '2024-12-29 04:37:23', '2024-12-29 04:37:23'),
+(21, 8, 27, 'cod', 'pending', '2024-12-29 06:06:52', '2024-12-29 06:06:52'),
+(22, 10, 29, 'cod', 'approved', '2024-12-29 07:58:48', '2024-12-29 08:04:17');
 
 -- --------------------------------------------------------
 
@@ -546,10 +557,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `mobile`, `email_verified_at`, `password`, `utype`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', '083185279521', NULL, '$2y$12$ZnR/A4G0uxhDJ/Euu6QRbeKOoAqBnximyHzgivIEcx6kxWiCuzssu', 'ADM', NULL, '2024-10-17 09:08:47', '2024-12-27 09:37:48'),
-(2, 'user', 'user@gmail.com', '081234567890', NULL, '$2y$12$A4g.6qhgPw4q2G8m78217O9ks5KNkpd0/nXzWx6i9zIArTbJbsroG', 'USR', NULL, '2024-10-17 09:11:10', '2024-10-17 09:11:10'),
+(1, 'admin1', 'admin@gmail.com', '083185279521', NULL, '$2y$12$ZnR/A4G0uxhDJ/Euu6QRbeKOoAqBnximyHzgivIEcx6kxWiCuzssu', 'ADM', NULL, '2024-10-17 09:08:47', '2024-12-29 08:05:38'),
 (4, 'ojakkk', 'ojak@gmail.com', '098765432190', NULL, '$2y$12$TIojrgQTIMZNhtnjikWbSepo1Dd6zFY4KpPrWFYwloDtQOsJxBX3S', 'USR', NULL, '2024-12-04 21:17:46', '2024-12-28 00:01:20'),
-(6, 'nelhayatii', 'nel@gmail.com', '098765432112', NULL, '$2y$12$teDNxgSQ3Aewzvjzr4JwpeeC38vayJQeUkhBYDmFGdlP0zyNS.NXy', 'USR', NULL, '2024-12-21 12:19:45', '2024-12-28 00:06:45');
+(6, 'nelhayatii', 'nel@gmail.com', '098765432112', NULL, '$2y$12$teDNxgSQ3Aewzvjzr4JwpeeC38vayJQeUkhBYDmFGdlP0zyNS.NXy', 'USR', NULL, '2024-12-21 12:19:45', '2024-12-28 00:06:45'),
+(7, 'adik', 'adik@gmail.com', '083185279522', NULL, '$2y$12$QBHNWpW/N6531Otje/NR6.frG40weZee3o5U4VVQEpfD0MGJq4Y4.', 'USR', NULL, '2024-12-29 00:01:17', '2024-12-29 00:01:17'),
+(8, 'karin', 'karin@gmail.com', '083172846521', NULL, '$2y$12$PctvEZUEMnsvcqNGAIpyK.C2Ogx0UdaUKVkok8gD.tQiElGOPkhEi', 'USR', NULL, '2024-12-29 04:36:04', '2024-12-29 04:36:04'),
+(10, 'user1', 'user@gmail.com', '081266809340', NULL, '$2y$12$JCeNkFw2mBccHJMWUPQtKORJFZ48Y5ubAIEUy3MVuoyB4aT31vhjm', 'USR', NULL, '2024-12-29 07:56:52', '2024-12-29 07:59:22');
 
 --
 -- Indexes for dumped tables
@@ -701,7 +714,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `brands`
@@ -719,13 +732,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -755,19 +768,19 @@ ALTER TABLE `month_names`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `slides`
@@ -779,13 +792,13 @@ ALTER TABLE `slides`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

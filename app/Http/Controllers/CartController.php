@@ -140,7 +140,7 @@ class CartController extends Controller
         if (!$address) {
             $request->validate([
                 'name' => 'required|max:100',
-                'phone' => 'required|numeric|digits:10',
+                'phone' => 'required|numeric|digits_between:10,15',
                 'zip' => 'required|numeric|digits:6',
                 'state' => 'required',
                 'city' => 'required',
@@ -272,6 +272,46 @@ class CartController extends Controller
             ]);
         }
     }
+
+    public function editAddress($id)
+{
+    $address = Address::findOrFail($id);
+
+    // Pastikan hanya pemilik alamat yang bisa mengedit
+    if ($address->user_id !== Auth::id()) {
+        return redirect()->route('checkout')->with('error', 'Anda tidak memiliki izin untuk mengedit alamat ini.');
+    }
+
+    return view('edit-address', compact('address'));
+}
+
+public function updateAddress(Request $request, $id)
+{
+    $address = Address::findOrFail($id);
+
+    if ($address->user_id !== Auth::id()) {
+        return redirect()->route('cart.checkout')->with('error', 'Anda tidak memiliki izin untuk mengedit alamat ini.');
+    }
+
+    $request->validate([
+        'name' => 'required|max:100',
+        'phone' => 'required|numeric|digits_between:10,15',
+        'zip' => 'required|numeric|digits:6',
+        'state' => 'required',
+        'city' => 'required',
+        'address' => 'required',
+        'locality' => 'required',
+        'landmark' => 'required',
+    ]);
+
+    $data = $request->except('_token');
+
+    $address->update($data);
+
+    return redirect()->route('cart.checkout')->with('success', 'Alamat berhasil diperbarui.');
+}
+
+
 
 
     public function order_confirmation()

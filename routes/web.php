@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/{product_slug}', [ShopController::class, 'product_detail'])->name('shop.product.details');
 
@@ -39,6 +41,9 @@ Route::post('/wishlist/move-to-cart/{rowId}', [WishlistController::class, 'move_
 Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 Route::post('/place-an-order', [CartController::class, 'place_an_order'])->name('cart.place.an.order');
 Route::get('/order-confirmation', [CartController::class, 'order_confirmation'])->name('cart.order.confirmation');
+Route::get('/checkout/edit-address/{id}', [CartController::class, 'editAddress'])->name('checkout.edit.address');
+Route::post('/checkout/update-address/{id}', [CartController::class, 'updateAddress'])->name('checkout.update.address');
+
 
 Route::get('/contact-us', [HomeController::class, 'contact'])->name('home.contact');
 Route::post('/contact/store', [HomeController::class, 'contact_store'])->name('home.contact.store');
@@ -54,7 +59,7 @@ Route::middleware([ 'auth'])->group(function(){
     Route::get('/account-details', [UserController::class, 'account_details'])->name('user.account.details');
     Route::post('/account-details', [UserController::class, 'update_account_details'])->name('user.account.update');
 
-    
+
 
 });
 
@@ -108,6 +113,9 @@ Route::middleware([ 'auth',AuthAdmin::class])->group(function(){
 
     Route::get('/admin/users', [AdminController::class,'users'])->name('admin.users');
     Route::delete('/admin/users/{id}/delete', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
+
+    Route::get('/admin/orders/download-pdf', [AdminController::class, 'downloadPDF'])->name('admin.orders.download_pdf');
+
 
 
 });

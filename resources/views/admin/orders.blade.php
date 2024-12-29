@@ -30,6 +30,7 @@
                         <div class="button-submit">
                             <button class="" type="submit"><i class="icon-search"></i></button>
                         </div>
+                        <a class="tf-button style-1 w208" href="{{ route('admin.orders.download_pdf') }}" class="btn btn-primary">Cetak Data</a>
                     </form>
                 </div>
             </div>

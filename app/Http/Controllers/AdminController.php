@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Slide;
 use App\Models\Transaction;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -763,6 +764,14 @@ class AdminController extends Controller
 
         return redirect()->route('admin.settings')->with('success', 'Settings updated successfully!');
     }
+
+    public function downloadPDF()
+{
+    $orders = Order::with('orderItems')->get(); // Ambil semua orderan
+    $pdf = PDF::loadView('admin.pdf', compact('orders')); // Path view disesuaikan
+    return $pdf->download('orders.pdf'); // Unduh file PDF
+}
+
 
 
 
