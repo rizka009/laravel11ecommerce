@@ -11,11 +11,14 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Slide;
 use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Laravel\Facades\Image;
 
 class AdminController extends Controller
@@ -60,6 +63,32 @@ class AdminController extends Controller
 
         return view('admin.index',compact('orders','dashboardDatas','AmountM','OrderedAmountM','DeliveredAmountM','CanceledAmountM','TotalAmount','TotalOrderedAmount','TotalDeliveredAmount','TotalCanceledAmount'));
     }
+
+    public function users()
+    {
+        // Mengambil data user dengan utype 'USR' dan menghitung total pesanan
+        $users = User::where('utype', 'USR')
+            ->withCount('orders') // Menghitung jumlah pesanan
+            ->orderBy('id', 'DESC')
+            ->paginate(10); // 10 data per halaman
+
+        // Mengirim data ke view
+        return view('admin.users', compact('users'));
+    }
+
+
+    public function deleteUser($id)
+    {
+        // Mencari user berdasarkan ID
+        $user = User::findOrFail($id);
+
+        // Menghapus user
+        $user->delete();
+
+        // Redirect kembali ke halaman users dengan pesan sukses
+        return redirect()->route('admin.users')->with('success', 'User deleted successfully!');
+    }
+
     //brand
     public function brands()
     {
@@ -259,8 +288,11 @@ class AdminController extends Controller
             'quantity' => 'required',
             'image' => 'required|mimes:png,jpg,jpeg|max:2048',
             'category_id' => 'required',
-            'brand_id' => 'required'
+            'brand_id' => 'required',
+            'production_date' => 'nullable|date',
+            'expiry_date' => 'nullable|date|after_or_equal:production_date',
         ]);
+
 
         $product = new Product();
         $product->name = $request->name;
@@ -275,6 +307,8 @@ class AdminController extends Controller
         $product->quantity = $request->quantity;
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
+        $product->production_date = $request->production_date;
+        $product->expiry_date = $request->expiry_date;
 
         $current_timestamp = Carbon::now()->timestamp;
 
@@ -352,7 +386,9 @@ class AdminController extends Controller
             'quantity' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
             'category_id' => 'required',
-            'brand_id' => 'required'
+            'brand_id' => 'required',
+            'production_date' => 'nullable|date',
+            'expiry_date' => 'nullable|date|after_or_equal:production_date',
         ]);
 
         $product = Product::find($request->id);
@@ -368,6 +404,8 @@ class AdminController extends Controller
         $product->quantity = $request->quantity;
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
+        $product->production_date = $request->production_date;
+        $product->expiry_date = $request->expiry_date;
 
         $current_timestamp = Carbon::now()->timestamp;
 
@@ -425,6 +463,20 @@ class AdminController extends Controller
 
         $product->save();
         return redirect()->route('admin.products')->with('status','Product has been update successfully!');
+    }
+
+    public function product_details($id)
+    {
+        // Menemukan produk berdasarkan ID
+        $product = Product::find($id);
+
+        // Jika produk tidak ditemukan, beri respon atau arahkan ke halaman lain
+        if (!$product) {
+            return redirect()->route('admin.products')->with('error', 'Product not found');
+        }
+
+        // Mengirim data produk ke view
+        return view('admin.product-details', compact('product'));
     }
 
     public function product_delete($id)
@@ -672,6 +724,47 @@ class AdminController extends Controller
         $results = Product::where('name', 'LIKE', "%{$query}%")->take(8)->get();
         return response()->json($results);
     }
+
+    public function settings()
+    {
+        // Mengambil data pengguna yang sedang login
+        $user = Auth::user();
+
+        // Menampilkan view settings dengan data user
+        return view('admin.settings', compact('user'));
+    }
+
+    public function updateSettings(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'mobile' => 'required|string|max:15',
+            'email' => 'required|email|unique:users,email,' . Auth::id(),
+            'old_password' => 'nullable|string',
+            'new_password' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        // Perbarui data pengguna
+        $user->name = $request->name;
+        $user->mobile = $request->mobile;
+        $user->email = $request->email;
+
+        // Jika password lama dan baru diisi, lakukan validasi dan ubah password
+        if ($request->filled('old_password') && $request->filled('new_password')) {
+            if (!Hash::check($request->old_password, $user->password)) {
+                return back()->withErrors(['old_password' => 'Old password is incorrect.']);
+            }
+            $user->password = Hash::make($request->new_password);
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.settings')->with('success', 'Settings updated successfully!');
+    }
+
+
 
 
 }

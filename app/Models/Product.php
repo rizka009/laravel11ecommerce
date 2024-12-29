@@ -18,5 +18,17 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
+
+    // App\Models\Product.php
+public function getFormattedRegularPriceAttribute()
+{
+    return 'Rp. ' . number_format($this->regular_price, 2, ',', '.');
+}
+
+public function getFormattedSalePriceAttribute()
+{
+    return 'Rp. ' . number_format($this->sale_price, 2, ',', '.');
+}
+
 }
 

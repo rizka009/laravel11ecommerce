@@ -18,13 +18,15 @@ return new class extends Migration
             $table->string('short_description')->nullable();
             $table->text('description');
             $table->decimal('regular_price');
-            $table->decimal('sale_price')->nullable();
+            $table->decimal('sale_price')->nullable()->change();
             $table->string('SKU');
             $table->enum('stock_status',['instock','outofstock']);
             $table->boolean('featured')->default(false);
             $table->unsignedInteger('quantity')->default(10);
             $table->string('image')->nullable();
             $table->text('images')->nullable();
+            $table->date('production_date')->nullable();
+            $table->date('expiry_date')->nullable();
             $table->bigInteger('category_id')->unsigned()->nullable();
             $table->bigInteger('brand_id')->unsigned()->nullable();
             $table->timestamps();

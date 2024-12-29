@@ -76,6 +76,23 @@
                     @error('brand_id') <span class="alert alert-danger text-center">{{ $message }}</span> @enderror
                 </div>
 
+                <div class="cols gap22">
+                    <fieldset class="name">
+                        <div class="form-group">
+                            <div class="body-title mb-10">Production Date <span class="tf-color-1">*</span></div>
+                            <input type="date" class="form-control" id="production_date" name="production_date" value="{{ old('production_date', $product->production_date ?? '') }}">
+                        </div>
+                    </fieldset>
+                    @error('production_date') <span class="alert alert-danger text-center">{{ $message }}</span> @enderror
+                    <fieldset class="name">
+                        <div class="form-group">
+                            <div class="body-title mb-10">Expiry Date <span class="tf-color-1">*</span></div>
+                            <input type="date" class="form-control" id="expiry_date" name="expiry_date" value="{{ old('expiry_date', $product->expiry_date ?? '') }}">
+                        </div>
+                    </fieldset>
+                    @error('expiry_date') <span class="alert alert-danger text-center">{{ $message }}</span> @enderror
+                </div>
+
                 <fieldset class="shortdescription">
                     <div class="body-title mb-10">Short Description <span class="tf-color-1">*</span></div>
                     <textarea class="mb-10 ht-150" name="short_description" placeholder="Short Description" tabindex="0" aria-required="true" required="">{{ old('short_description') }}"</textarea>

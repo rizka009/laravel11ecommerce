@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'tax' => 21,
+    'tax' => 10,
 
     /*
     |--------------------------------------------------------------------------
@@ -55,13 +55,10 @@ return [
     */
 
     'format' => [
-
-        'decimals' => 2,
-
-        'decimal_point' => '.',
-
-        'thousand_seperator' => ','
-
+    'decimals' => 2,
+    'decimal_point' => ',',
+    'thousand_separator' => '.',
+    'prefix' => 'Rp. ', // Tambahkan prefix untuk mata uang
     ],
 
 ];

@@ -35,30 +35,32 @@
                 <a class="tf-button style-1 w208" href="{{ route('admin.product.add') }}"><i
                         class="icon-plus"></i>Add new</a>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive" style="overflow-x: auto;">
                 @if(Session::has('status'))
                     <p class="alert alert-success">{{ Session::get('status') }}</p>
                 @endif
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th class="text-center"  width="3%">No</th>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>SalePrice</th>
-                            <th>SKU</th>
+                            {{-- <th>SalePrice</th> --}}
+                            {{-- <th>SKU</th> --}}
                             <th>Category</th>
                             <th>Brand</th>
-                            <th>Featured</th>
-                            <th>Stock</th>
-                            <th>Quantity</th>
-                            <th>Action</th>
+                            <th class="text-center" width="5%">Featured</th>
+                            {{-- <th>Stock</th> --}}
+                            <th class="text-center" width="5%">Quantity</th>
+                            <th class="text-center"  >Production</th>
+                            <th class="text-center"  >Expiry Date </th>
+                            <th class="text-center" width="8%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($products as $product )
                         <tr>
-                            <td>{{ $product->id }}</td>
+                            <td class="text-center"  width="3%">{{ $product->id }}</td>
                             <td class="pname">
                                 <div class="image">
                                     <img src="{{ asset('uploads/products/thumbnails') }}/{{ $product->image }}" alt="{{ $product->name }}" class="image">
@@ -68,17 +70,39 @@
                                     <div class="text-tiny mt-3">{{ $product->slug }}</div>
                                 </div>
                             </td>
-                            <td>Rp. {{ $product->regular_price }}</td>
-                            <td>Rp. {{ $product->sale_price }}</td>
-                            <td>{{ $product->SKU }}</td>
+                            <td>
+                                <div class="name">
+                                    {{-- <a href="#" class="body-title-2">Price: Rp. {{ $product->regular_price }}</a> --}}
+                                    <div class="text-bold mt-3">Price: {{ $product->formatted_regular_price }}</div>
+                                    <div class="text-bold mt-3">Sale: {{ $product->formatted_sale_price }}</div>
+                                </div>
+                            </td>
+                            {{-- <td>Rp. {{ $product->regular_price }}</td>
+                            <td>Rp. {{ $product->sale_price }}</td> --}}
+                            {{-- <td>{{ $product->SKU }}</td> --}}
                             <td>{{ $product->category->name }}</td>
                             <td>{{ $product->brand->name }}</td>
-                            <td>{{ $product->featured == 0 ? "No":"Yes" }}</td>
-                            <td>{{ $product->stock_status }}</td>
-                            <td>{{ $product->quantity }}</td>
-                            <td>
+                            <td class="text-center">{{ $product->featured == 0 ? "No":"Yes" }}</td>
+                            {{-- <td>{{ $product->stock_status }}</td> --}}
+                            <td class="text-center">
+                                @if($product->quantity == 0)
+                                    <span class="text-danger">Sold Out</span>
+                                @else
+                                    {{ $product->quantity }}
+                                @endif
+                            </td>
+
+                            <td class="text-center">{{ $product->production_date }}</td>
+                            <td class="text-center">
+                                @if($product->expiry_date && \Carbon\Carbon::now()->gt($product->expiry_date))
+                                    <span style="color: red;">{{ $product->expiry_date }}</span>
+                                @else
+                                    {{ $product->expiry_date }}
+                                @endif
+                            </td>
+                            <td >
                                 <div class="list-icon-function">
-                                    <a href="#" target="_blank">
+                                    <a href="{{ route('admin.product.details',['id'=>$product->id]) }}" >
                                         <div class="item eye">
                                             <i class="icon-eye"></i>
                                         </div>

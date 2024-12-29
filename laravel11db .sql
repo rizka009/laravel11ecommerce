@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2024 at 03:22 PM
+-- Generation Time: Dec 29, 2024 at 04:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -51,8 +51,7 @@ CREATE TABLE `addresses` (
 
 INSERT INTO `addresses` (`id`, `user_id`, `name`, `phone`, `locality`, `address`, `city`, `state`, `country`, `landmark`, `zip`, `type`, `isdefault`, `created_at`, `updated_at`) VALUES
 (1, 2, 'rizka', '1234567890', 'Pauh', '123', 'padang', 'indonesia', 'indonesia', 'kos', '123456', 'home', 1, '2024-11-25 01:54:11', '2024-11-25 01:54:11'),
-(2, 3, 'rizka', '1234567890', 'jl.221', '123', 'padang', 'sumbar', 'indonesia', 'kos', '123456', 'home', 1, '2024-11-25 19:34:45', '2024-11-25 19:34:45'),
-(3, 4, 'ojak', '1234567890', 'jl.221', '123', 'padang', 'sumbar', 'indonesia', 'kos', '123456', 'home', 1, '2024-12-04 21:22:23', '2024-12-04 21:22:23');
+(3, 4, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 1, '2024-12-04 21:22:23', '2024-12-21 06:31:45');
 
 -- --------------------------------------------------------
 
@@ -74,10 +73,8 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `name`, `slug`, `image`, `created_at`, `updated_at`) VALUES
-(2, 'brand 1', 'brand-1', '1729768834.jpg', '2024-10-24 04:20:34', '2024-10-24 04:20:34'),
-(3, 'brand 2', 'brand-2', '1729768879.jpg', '2024-10-24 04:21:19', '2024-10-24 04:21:19'),
-(4, 'brand 3', 'brand-3', '1729769241.jpg', '2024-10-24 04:27:21', '2024-10-24 04:27:21'),
-(8, 'Napoleon', 'napoleon', '1733366158.png', '2024-12-04 19:35:58', '2024-12-04 19:35:58');
+(8, 'Napoleon', 'napoleon', '1733366158.png', '2024-12-04 19:35:58', '2024-12-04 19:35:58'),
+(9, 'Napoleon X Bombo Doughnut', 'napoleon-x-bombo-doughnut', '1735361909.jpg', '2024-12-16 18:16:55', '2024-12-27 21:58:29');
 
 -- --------------------------------------------------------
 
@@ -124,13 +121,12 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `slug`, `image`, `parent_id`, `created_at`, `updated_at`) VALUES
-(1, 'category 1', 'category-1', '1730283479.jpg', NULL, '2024-10-30 03:17:59', '2024-10-30 03:17:59'),
-(2, 'category 2', 'category-2', '1730285898.jpg', NULL, '2024-10-30 03:58:18', '2024-10-30 03:58:18'),
 (4, 'Bolu Gulung Mini', 'bolu-gulung-mini', '1733365791.jpg', NULL, '2024-12-04 19:29:54', '2024-12-04 19:29:54'),
 (5, 'Brownies Napoleon', 'brownies-napoleon', '1733365894.jpg', NULL, '2024-12-04 19:31:34', '2024-12-04 19:31:34'),
 (6, 'Lapis Napoleon', 'lapis-napoleon', '1733365924.jpg', NULL, '2024-12-04 19:32:04', '2024-12-04 19:32:04'),
 (7, 'Napoleon Cake', 'napoleon-cake', '1733365959.jpg', NULL, '2024-12-04 19:32:39', '2024-12-04 19:32:39'),
-(8, 'Roll Cake', 'roll-cake', '1733365992.jpg', NULL, '2024-12-04 19:33:12', '2024-12-04 19:33:12');
+(8, 'Roll Cake', 'roll-cake', '1733365992.jpg', NULL, '2024-12-04 19:33:12', '2024-12-04 19:33:12'),
+(10, 'Bombo Doughnut', 'bombo-doughnut', '1735361637.jpg', NULL, '2024-12-16 18:22:56', '2024-12-27 21:53:58');
 
 -- --------------------------------------------------------
 
@@ -153,7 +149,7 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `name`, `email`, `phone`, `comment`, `created_at`, `updated_at`) VALUES
-(2, 'ojak', 'ojak@gmail.com', '083185279521', 'test comment', '2024-12-16 02:35:29', '2024-12-16 02:35:29');
+(2, 'admin', 'admin@gmail.com', '08123456789', 'Project Ini Sangat Bagus', '2024-12-28 03:05:09', '2024-12-28 03:05:09');
 
 -- --------------------------------------------------------
 
@@ -261,7 +257,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2024_11_24_120127_create_transactions_table', 5),
 (23, '2024_12_06_071246_create_slides_table', 6),
 (24, '2024_12_11_093918_create_month_names_table', 7),
-(25, '2024_12_16_080817_create_contacts_table', 8);
+(26, '2024_12_16_080817_create_contacts_table', 8),
+(27, '2024_12_21_163351_add_production_and_expiry_date_to_products_table', 9);
 
 -- --------------------------------------------------------
 
@@ -328,16 +325,14 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `subtotal`, `discount`, `tax`, `total`, `name`, `phone`, `locality`, `address`, `city`, `state`, `country`, `landmark`, `zip`, `type`, `status`, `is_shipping_different`, `delivered_date`, `canceled_date`, `created_at`, `updated_at`) VALUES
-(1, 2, 350.00, 150.00, 73.50, 423.50, 'rizka', '1234567890', 'Pauh', '123', 'padang', 'indonesia', 'indonesia', 'kos', '123456', 'home', 'delivered', 0, '2024-12-06', NULL, '2024-11-25 01:54:11', '2024-12-05 18:30:47'),
-(2, 2, 470.00, 0.00, 98.70, 568.70, 'rizka', '1234567890', 'Pauh', '123', 'padang', 'indonesia', 'indonesia', 'kos', '123456', 'home', 'ordered', 0, NULL, NULL, '2024-11-25 02:05:43', '2024-11-25 02:05:43'),
-(3, 2, 540.00, 10.00, 113.40, 653.40, 'rizka', '1234567890', 'Pauh', '123', 'padang', 'indonesia', 'indonesia', 'kos', '123456', 'home', 'ordered', 0, NULL, NULL, '2024-11-25 02:10:43', '2024-11-25 02:10:43'),
-(4, 2, 165.00, 0.00, 34.65, 199.65, 'rizka', '1234567890', 'Pauh', '123', 'padang', 'indonesia', 'indonesia', 'kos', '123456', 'home', 'canceled', 0, NULL, '2024-12-06', '2024-11-25 18:13:48', '2024-12-05 18:23:37'),
-(5, 3, 255.00, 0.00, 53.55, 308.55, 'rizka', '1234567890', 'jl.221', '123', 'padang', 'sumbar', 'indonesia', 'kos', '123456', 'home', 'ordered', 0, NULL, NULL, '2024-11-25 19:34:45', '2024-11-25 19:34:45'),
-(6, 2, 90.00, 0.00, 18.90, 108.90, 'rizka', '1234567890', 'Pauh', '123', 'padang', 'indonesia', 'indonesia', 'kos', '123456', 'home', 'canceled', 0, NULL, '2024-12-05', '2024-12-02 06:15:21', '2024-12-05 07:13:07'),
 (7, 4, 180000.00, 0.00, 37800.00, 217800.00, 'ojak', '1234567890', 'jl.221', '123', 'padang', 'sumbar', 'indonesia', 'kos', '123456', 'home', 'delivered', 0, '2024-12-05', NULL, '2024-12-04 21:42:57', '2024-12-05 06:32:36'),
 (8, 4, 90000.00, 0.00, 18900.00, 108900.00, 'ojak', '1234567890', 'jl.221', '123', 'padang', 'sumbar', 'indonesia', 'kos', '123456', 'home', 'canceled', 0, NULL, '2024-12-05', '2024-12-04 22:36:39', '2024-12-05 07:32:21'),
 (9, 4, 90000.00, 0.00, 18900.00, 108900.00, 'ojak', '1234567890', 'jl.221', '123', 'padang', 'sumbar', 'indonesia', 'kos', '123456', 'home', 'canceled', 0, NULL, '2024-12-05', '2024-12-05 07:37:40', '2024-12-05 07:37:52'),
-(10, 3, 90000.00, 0.00, 18900.00, 108900.00, 'rizka', '1234567890', 'jl.221', '123', 'padang', 'sumbar', 'indonesia', 'kos', '123456', 'home', 'ordered', 0, NULL, NULL, '2024-12-05 18:28:02', '2024-12-05 18:28:02');
+(15, 4, 270000.00, 0.00, 56700.00, 326700.00, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 'ordered', 0, NULL, NULL, '2024-12-27 09:46:09', '2024-12-27 09:46:09'),
+(16, 4, 90000.00, 0.00, 18900.00, 108900.00, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 'ordered', 0, NULL, NULL, '2024-12-27 21:54:55', '2024-12-27 21:54:55'),
+(17, 4, 90000.00, 0.00, 18900.00, 108900.00, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 'ordered', 0, NULL, NULL, '2024-12-27 21:55:42', '2024-12-27 21:55:42'),
+(20, 4, 450000.00, 0.00, 94500.00, 544500.00, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 'ordered', 0, NULL, NULL, '2024-12-27 22:18:04', '2024-12-27 22:18:04'),
+(23, 4, 180000.00, 0.00, 37800.00, 217800.00, 'ojakk', '1234567891', 'jl.2215', '1234', 'padangg', 'sumbarr', 'indonesia', 'kos-kos', '123457', 'home', 'delivered', 0, '2024-12-28', NULL, '2024-12-27 22:43:26', '2024-12-28 01:34:14');
 
 -- --------------------------------------------------------
 
@@ -362,24 +357,17 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`id`, `product_id`, `order_id`, `price`, `quantity`, `options`, `rstatus`, `created_at`, `updated_at`) VALUES
-(1, 6, 1, 100.00, 5, NULL, 0, '2024-11-25 01:54:11', '2024-11-25 01:54:11'),
-(2, 7, 2, 180.00, 1, NULL, 0, '2024-11-25 02:05:43', '2024-11-25 02:05:43'),
-(3, 6, 2, 100.00, 2, NULL, 0, '2024-11-25 02:05:43', '2024-11-25 02:05:43'),
-(4, 5, 2, 90.00, 1, NULL, 0, '2024-11-25 02:05:43', '2024-11-25 02:05:43'),
-(5, 3, 3, 90.00, 1, NULL, 0, '2024-11-25 02:10:43', '2024-11-25 02:10:43'),
-(6, 7, 3, 180.00, 1, NULL, 0, '2024-11-25 02:10:43', '2024-11-25 02:10:43'),
-(7, 5, 3, 90.00, 2, NULL, 0, '2024-11-25 02:10:43', '2024-11-25 02:10:43'),
-(8, 6, 3, 100.00, 1, NULL, 0, '2024-11-25 02:10:43', '2024-11-25 02:10:43'),
-(9, 10, 4, 75.00, 1, NULL, 0, '2024-11-25 18:13:48', '2024-11-25 18:13:48'),
-(10, 8, 4, 90.00, 1, NULL, 0, '2024-11-25 18:13:48', '2024-11-25 18:13:48'),
-(11, 11, 5, 90.00, 2, NULL, 0, '2024-11-25 19:34:45', '2024-11-25 19:34:45'),
-(12, 10, 5, 75.00, 1, NULL, 0, '2024-11-25 19:34:45', '2024-11-25 19:34:45'),
-(13, 11, 6, 90.00, 1, NULL, 0, '2024-12-02 06:15:21', '2024-12-02 06:15:21'),
 (14, 30, 7, 90000.00, 1, NULL, 0, '2024-12-04 21:42:57', '2024-12-04 21:42:57'),
 (15, 29, 7, 90000.00, 1, NULL, 0, '2024-12-04 21:42:57', '2024-12-04 21:42:57'),
 (16, 28, 8, 90000.00, 1, NULL, 0, '2024-12-04 22:36:39', '2024-12-04 22:36:39'),
 (17, 30, 9, 90000.00, 1, NULL, 0, '2024-12-05 07:37:40', '2024-12-05 07:37:40'),
-(18, 24, 10, 90000.00, 1, NULL, 0, '2024-12-05 18:28:02', '2024-12-05 18:28:02');
+(23, 39, 15, 90000.00, 1, NULL, 0, '2024-12-27 09:46:09', '2024-12-27 09:46:09'),
+(24, 21, 15, 90000.00, 1, NULL, 0, '2024-12-27 09:46:09', '2024-12-27 09:46:09'),
+(25, 27, 15, 90000.00, 1, NULL, 0, '2024-12-27 09:46:09', '2024-12-27 09:46:09'),
+(26, 39, 16, 90000.00, 1, NULL, 0, '2024-12-27 21:54:55', '2024-12-27 21:54:55'),
+(27, 39, 17, 90000.00, 1, NULL, 0, '2024-12-27 21:55:42', '2024-12-27 21:55:42'),
+(28, 42, 20, 90000.00, 5, NULL, 0, '2024-12-27 22:18:04', '2024-12-27 22:18:04'),
+(29, 40, 23, 90000.00, 2, NULL, 0, '2024-12-27 22:43:26', '2024-12-27 22:43:26');
 
 -- --------------------------------------------------------
 
@@ -415,6 +403,8 @@ CREATE TABLE `products` (
   `images` text DEFAULT NULL,
   `category_id` bigint(20) UNSIGNED DEFAULT NULL,
   `brand_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `production_date` date DEFAULT NULL,
+  `expiry_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -423,35 +413,37 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `slug`, `short_description`, `description`, `regular_price`, `sale_price`, `SKU`, `stock_status`, `featured`, `quantity`, `image`, `images`, `category_id`, `brand_id`, `created_at`, `updated_at`) VALUES
-(3, 'product three', 'product-three', '\"Short Description *\"\"\"\"\"\"\"', 'Description *', 100000.00, 90000.00, 'N001', 'instock', 0, 10, '1730390884.jpg', '1730676697-1.jpg,1730676697-2.jpg,1730676697-3.jpg,1730676697-4.jpg,1730676697-5.jpg,1730676697-6.jpg,1730676697-7.jpg,1730676697-8.jpg', 2, 4, '2024-10-31 09:08:05', '2024-12-11 07:18:42'),
-(4, 'product four', 'product-four', 'Short Description *\"\"\"\"\"', 'Description *', 100000.00, 90000.00, 'LC001', 'instock', 0, 10, '1730676746.jpg', '1730676746-1.jpg,1730676746-2.jpg,1730676746-3.jpg,1730676746-4.jpg,1730676746-5.jpg', 1, 3, '2024-11-03 14:40:44', '2024-12-11 07:19:23'),
-(5, 'product five', 'product-five', 's des\"\"\"\"\"', 'des', 100000.00, 90000.00, 'LC001', 'instock', 0, 10, '1730671772.jpg', '1730671772-1.jpg', 2, 2, '2024-11-03 15:09:33', '2024-12-11 07:19:35'),
-(6, 'product six', 'product-six', 's des\" update\"\"\"\"', 'des update', 100000.00, 90000.00, 'LC005', 'instock', 0, 10, '1730675560.jpg', '1730675560-1.jpg,1730675560-2.jpg,1730675560-3.jpg', 2, 3, '2024-11-03 15:35:16', '2024-12-11 07:19:46'),
-(7, 'product seven', 'product-seven', 's des\" update\"\"\"', 'des update', 100000.00, 90000.00, 'BGL002', 'instock', 0, 11, '1730675673.jpg', '1730675673-1.jpg,1730675673-2.jpg,1730675673-3.jpg', 1, 2, '2024-11-03 16:14:34', '2024-12-11 07:20:04'),
-(8, 'product  eight', 'product-eight', 's product  eight\"\"\"\"\"\"', 'product  eight', 100000.00, 90000.00, 'N002', 'instock', 0, 11, '1730715389.jpg', '1730715389-1.jpg,1730715389-2.jpg,1730715389-3.jpg,1730715389-4.jpg', 1, 2, '2024-11-04 03:16:33', '2024-12-11 07:20:23'),
-(10, 'product 10', 'product-10', '\"sdfhghbdg\"\"', 'zsdgzdhfghdxhbxfghx', 100000.00, 90000.00, 'BGL003', 'instock', 0, 10, '1732010640.jpg', '1732010640-1.jpg,1732010640-2.jpg', 2, 3, '2024-11-19 03:04:02', '2024-12-11 07:20:35'),
-(11, 'Bolu Mini', 'bolu-mini', 'Ini Bolu Mini\"\"', 'Bolu Mini', 100000.00, 90000.00, 'BM-01', 'instock', 0, 10, '1732587329.jpg', '1732587329-1.jpg,1732587329-2.jpg', 1, 2, '2024-11-25 19:15:32', '2024-12-11 07:25:25'),
-(12, 'Bolu Gulung Mini Black Florest', 'bolu-gulung-mini-black-florest', 'Ini adalah Bolu Gulung Mini Black Florest', 'Ini adalah Bolu Gulung Mini Black Florest', 100000.00, 90000.00, 'BGM-BF', 'instock', 1, 10, '1733366317.jpg', '', 4, 8, '2024-12-04 19:38:38', '2024-12-04 19:38:38'),
-(13, 'Bolu Gulung Mini Keju', 'bolu-gulung-mini-keju', 'Ini adalah Bolu Gulung Mini Keju', 'Ini adalah Bolu Gulung Mini Keju', 100000.00, 90000.00, 'BGM-Keju', 'instock', 1, 10, '1733366418.jpg', '', 4, 8, '2024-12-04 19:40:18', '2024-12-04 19:40:18'),
-(14, 'Bolu Gulung Mini Pandan Srikaya', 'bolu-gulung-mini-pandan-srikaya', 'Ini adalah Bolu Gulung Mini Pandan Srikaya', 'Ini adalah Bolu Gulung Mini Pandan Srikaya', 100000.00, 90000.00, 'BGM-PS', 'instock', 1, 10, '1733366478.jpg', '', 4, 8, '2024-12-04 19:41:18', '2024-12-04 19:41:18'),
-(15, 'Brownies Besekat Napoleon', 'brownies-besekat-napoleon', 'Ini adalah Brownies Besekat Napoleon', 'Ini adalah Brownies Besekat Napoleon', 100000.00, 90000.00, 'BN-Besekat', 'instock', 1, 10, '1733366952.jpg', '', 5, 8, '2024-12-04 19:49:13', '2024-12-04 19:49:13'),
-(16, 'Lapis Cokelat', 'lapis-cokelat', 'Ini adalah Lapis Cokelat', 'Ini adalah Lapis Cokelat', 100000.00, 90000.00, 'LN-Cokelat', 'instock', 1, 10, '1733367042.jpg', '', 6, 8, '2024-12-04 19:50:42', '2024-12-04 19:50:42'),
-(17, 'Lapis Durian', 'lapis-durian', 'Ini adalah Lapis Durian', 'Ini adalah Lapis Durian', 100000.00, 90000.00, 'LN-Durian', 'instock', 1, 10, '1733367120.jpg', '', 6, 8, '2024-12-04 19:52:00', '2024-12-04 19:52:00'),
-(18, 'Lapis Original', 'lapis-original', 'Ini adalah Lapis Original', 'Ini adalah Lapis Original', 100000.00, 90000.00, 'LN-Original', 'instock', 1, 10, '1733367202.jpg', '', 6, 8, '2024-12-04 19:53:22', '2024-12-04 19:53:22'),
-(19, 'Lapis Pandan', 'lapis-pandan', 'Ini adalah Lapis Pandan', 'Ini adalah Lapis Pandan', 100000.00, 90000.00, 'LN-Pandan', 'instock', 1, 10, '1733367405.jpg', '', 6, 8, '2024-12-04 19:56:45', '2024-12-04 19:56:45'),
-(20, 'Lapis Ubi Ungu', 'lapis-ubi-ungu', 'Ini adalah Lapis Ubi Ungu', 'Ini adalah Lapis Ubi Ungu', 100000.00, 90000.00, 'LN-UbiU', 'instock', 1, 10, '1733367480.jpg', '', 6, 8, '2024-12-04 19:58:00', '2024-12-04 19:58:00'),
-(21, 'Napoleon Caramel', 'napoleon-caramel', 'ini adalah Napoleon Caramel', 'ini adalah Napoleon Caramel', 100000.00, 90000.00, 'NC-Caramel', 'instock', 1, 10, '1733367920.jpg', '', 7, 8, '2024-12-04 20:05:20', '2024-12-04 20:05:20'),
-(22, 'Napoleon Durian', 'napoleon-durian', 'ini adalah Napoleon Durian', 'ini adalah Napoleon Durian', 100000.00, 90000.00, 'NC-Durian', 'instock', 1, 10, '1733367997.jpg', '', 7, 8, '2024-12-04 20:06:37', '2024-12-04 20:06:37'),
-(23, 'Napoleon Extra Cheese', 'napoleon-extra-cheese', 'ini adalah Napoleon Extra Cheese', 'ini adalah Napoleon Extra Cheese', 100000.00, 90000.00, 'NC-EC', 'instock', 1, 10, '1733368105.jpg', '', 7, 8, '2024-12-04 20:08:25', '2024-12-04 20:08:25'),
-(24, 'Napoleon Great Chocolate', 'napoleon-great-chocolate', 'ini adalah Napoleon Great Chocolate', 'ini adalah Napoleon Great Chocolate', 100000.00, 90000.00, 'NC-GreatC', 'instock', 1, 10, '1733368220.jpg', '', 7, 8, '2024-12-04 20:10:20', '2024-12-04 20:10:20'),
-(25, 'Napoleon Green Tea', 'napoleon-green-tea', 'ini adalah Napoleon Green Tea', 'ini adalah Napoleon Green Tea', 100000.00, 90000.00, 'NC-GT', 'instock', 1, 10, '1733368315.jpg', '', 7, 8, '2024-12-04 20:11:56', '2024-12-04 20:11:56'),
-(26, 'Napoleon Kopi', 'napoleon-kopi', 'ini adalah Napoleon Kopi', 'ini adalah Napoleon Kopi', 100000.00, 90000.00, 'NC-Kopi', 'instock', 1, 10, '1733368367.jpg', '', 7, 8, '2024-12-04 20:12:47', '2024-12-04 20:12:47'),
-(27, 'Napoleon Red Velvet', 'napoleon-red-velvet', 'ini adalah Napoleon Red Velvet', 'ini adalah Napoleon Red Velvet', 100000.00, 90000.00, 'NC-RV', 'instock', 1, 10, '1733368418.jpg', '', 7, 8, '2024-12-04 20:13:38', '2024-12-04 20:13:38'),
-(28, 'Napoleon Tiramisu', 'napoleon-tiramisu', 'ini adalah Napoleon Tiramisu', 'ini adalah Napoleon Tiramisu', 100000.00, 90000.00, 'NC-Tiramisu', 'instock', 1, 10, '1733368487.jpg', '', 7, 8, '2024-12-04 20:14:47', '2024-12-04 20:14:47'),
-(29, 'Roll cake Cokelat', 'roll-cake-cokelat', 'ini adalah Roll cake Cokelat', 'ini adalah Roll cake Cokelat', 100000.00, 90000.00, 'RC-Cokelat', 'instock', 1, 10, '1733368553.jpg', '', 8, 8, '2024-12-04 20:15:54', '2024-12-04 20:15:54'),
-(30, 'Roll cake Keju', 'roll-cake-keju', 'ini adalah Roll cake Keju\"', 'ini adalah Roll cake Keju', 100000.00, 90000.00, 'RC-Keju', 'instock', 1, 10, '1733368602.jpg', '', 8, 8, '2024-12-04 20:16:42', '2024-12-11 07:04:32'),
-(34, 'Caramel Napoleon', 'caramel-napoleon', '\"Caramel Napoleon', 'Caramel Napoleon', 100000.00, 90000.00, 'CN', 'instock', 0, 10, '1734345835.jpg', '1734345835-1.jpg', 1, 2, '2024-12-16 03:43:55', '2024-12-16 03:43:55');
+INSERT INTO `products` (`id`, `name`, `slug`, `short_description`, `description`, `regular_price`, `sale_price`, `SKU`, `stock_status`, `featured`, `quantity`, `image`, `images`, `category_id`, `brand_id`, `production_date`, `expiry_date`, `created_at`, `updated_at`) VALUES
+(12, 'Bolu Gulung Mini Black Florest', 'bolu-gulung-mini-black-florest', 'Ini adalah Bolu Gulung Mini Black Florest', 'Ini adalah Bolu Gulung Mini Black Florest', 100000.00, 90000.00, 'BGM-BF', 'instock', 1, 10, '1733366317.jpg', '', 4, 8, NULL, NULL, '2024-12-04 19:38:38', '2024-12-04 19:38:38'),
+(13, 'Bolu Gulung Mini Keju', 'bolu-gulung-mini-keju', 'Ini adalah Bolu Gulung Mini Keju', 'Ini adalah Bolu Gulung Mini Keju', 100000.00, 90000.00, 'BGM-Keju', 'instock', 1, 10, '1733366418.jpg', '', 4, 8, NULL, NULL, '2024-12-04 19:40:18', '2024-12-04 19:40:18'),
+(14, 'Bolu Gulung Mini Pandan Srikaya', 'bolu-gulung-mini-pandan-srikaya', 'Ini adalah Bolu Gulung Mini Pandan Srikaya', 'Ini adalah Bolu Gulung Mini Pandan Srikaya', 100000.00, 90000.00, 'BGM-PS', 'instock', 1, 10, '1733366478.jpg', '', 4, 8, NULL, NULL, '2024-12-04 19:41:18', '2024-12-04 19:41:18'),
+(15, 'Brownies Besekat Napoleon', 'brownies-besekat-napoleon', 'Ini adalah Brownies Besekat Napoleon', 'Ini adalah Brownies Besekat Napoleon', 100000.00, 90000.00, 'BN-Besekat', 'instock', 1, 10, '1733366952.jpg', '', 5, 8, NULL, NULL, '2024-12-04 19:49:13', '2024-12-04 19:49:13'),
+(16, 'Lapis Cokelat', 'lapis-cokelat', 'Ini adalah Lapis Cokelat', 'Ini adalah Lapis Cokelat', 100000.00, 90000.00, 'LN-Cokelat', 'instock', 1, 10, '1733367042.jpg', '', 6, 8, NULL, NULL, '2024-12-04 19:50:42', '2024-12-04 19:50:42'),
+(17, 'Lapis Durian', 'lapis-durian', 'Ini adalah Lapis Durian', 'Ini adalah Lapis Durian', 100000.00, 90000.00, 'LN-Durian', 'instock', 1, 10, '1733367120.jpg', '', 6, 8, NULL, NULL, '2024-12-04 19:52:00', '2024-12-04 19:52:00'),
+(18, 'Lapis Original', 'lapis-original', 'Ini adalah Lapis Original', 'Ini adalah Lapis Original', 100000.00, 90000.00, 'LN-Original', 'instock', 1, 10, '1733367202.jpg', '', 6, 8, NULL, NULL, '2024-12-04 19:53:22', '2024-12-04 19:53:22'),
+(19, 'Lapis Pandan', 'lapis-pandan', 'Ini adalah Lapis Pandan', 'Ini adalah Lapis Pandan', 100000.00, 90000.00, 'LN-Pandan', 'instock', 1, 10, '1733367405.jpg', '', 6, 8, NULL, NULL, '2024-12-04 19:56:45', '2024-12-04 19:56:45'),
+(20, 'Lapis Ubi Ungu', 'lapis-ubi-ungu', 'Ini adalah Lapis Ubi Ungu', 'Ini adalah Lapis Ubi Ungu', 100000.00, 90000.00, 'LN-UbiU', 'instock', 1, 10, '1733367480.jpg', '', 6, 8, NULL, NULL, '2024-12-04 19:58:00', '2024-12-04 19:58:00'),
+(21, 'Napoleon Caramel', 'napoleon-caramel', 'ini adalah Napoleon Caramel', 'ini adalah Napoleon Caramel', 100000.00, 90000.00, 'NC-Caramel', 'instock', 1, 10, '1733367920.jpg', '', 7, 8, NULL, NULL, '2024-12-04 20:05:20', '2024-12-04 20:05:20'),
+(22, 'Napoleon Durian', 'napoleon-durian', 'ini adalah Napoleon Durian', 'ini adalah Napoleon Durian', 100000.00, 90000.00, 'NC-Durian', 'instock', 1, 10, '1733367997.jpg', '', 7, 8, NULL, NULL, '2024-12-04 20:06:37', '2024-12-04 20:06:37'),
+(23, 'Napoleon Extra Cheese', 'napoleon-extra-cheese', 'ini adalah Napoleon Extra Cheese', 'ini adalah Napoleon Extra Cheese', 100000.00, 90000.00, 'NC-EC', 'instock', 1, 10, '1733368105.jpg', '', 7, 8, NULL, NULL, '2024-12-04 20:08:25', '2024-12-04 20:08:25'),
+(24, 'Napoleon Great Chocolate', 'napoleon-great-chocolate', 'ini adalah Napoleon Great Chocolate', 'ini adalah Napoleon Great Chocolate', 100000.00, 90000.00, 'NC-GreatC', 'instock', 1, 10, '1733368220.jpg', '', 7, 8, NULL, NULL, '2024-12-04 20:10:20', '2024-12-04 20:10:20'),
+(25, 'Napoleon Green Tea', 'napoleon-green-tea', 'ini adalah Napoleon Green Tea\"', 'ini adalah Napoleon Green Tea', 100000.00, 90000.00, 'NC-GT', 'instock', 1, 10, '1733368315.jpg', '1734399076-1.jpg,1734399076-2.jpg,1734399076-3.jpg,1734399076-4.jpg', 7, 8, NULL, NULL, '2024-12-04 20:11:56', '2024-12-16 18:31:17'),
+(26, 'Napoleon Kopi', 'napoleon-kopi', 'ini adalah Napoleon Kopi\"', 'ini adalah Napoleon Kopi', 100000.00, 90000.00, 'NC-Kopi', 'instock', 1, 10, '1733368367.jpg', '1734399020-1.jpg', 7, 8, NULL, NULL, '2024-12-04 20:12:47', '2024-12-16 18:30:20'),
+(27, 'Napoleon Red Velvet', 'napoleon-red-velvet', 'ini adalah Napoleon Red Velvet\"\"', 'ini adalah Napoleon Red Velvet', 100000.00, 90000.00, 'NC-RV', 'instock', 1, 10, '1733368418.jpg', '1735361544-1.jpg,1735361544-2.jpg,1735361544-3.jpg,1735361544-4.jpg,1735361544-5.jpg', 7, 8, '2024-12-24', '2024-12-31', '2024-12-04 20:13:38', '2024-12-27 21:52:25'),
+(28, 'Napoleon Tiramisu', 'napoleon-tiramisu', 'ini adalah Napoleon Tiramisu\"\"', 'ini adalah Napoleon Tiramisu', 100000.00, 90000.00, 'NC-Tiramisu', 'instock', 1, 10, '1733368487.jpg', '1735374816-1.jpg,1735374816-2.jpg,1735374816-3.jpg,1735374816-4.jpg', 7, 8, '2024-12-28', '2025-01-04', '2024-12-04 20:14:47', '2024-12-28 01:33:39'),
+(29, 'Roll cake Cokelat', 'roll-cake-cokelat', 'ini adalah Roll cake Cokelat\"\"', 'ini adalah Roll cake Cokelat', 100000.00, 90000.00, 'RC-Cokelat', 'instock', 1, 10, '1733368553.jpg', '1735373679-1.jpg,1735373679-2.jpg', 8, 8, '2024-12-28', '2025-01-04', '2024-12-04 20:15:54', '2024-12-28 01:14:40'),
+(30, 'Roll cake Keju', 'roll-cake-keju', 'ini adalah Roll cake Keju\"\"\"', 'ini adalah Roll cake Keju', 100000.00, 90000.00, 'RC-Keju', 'instock', 1, 10, '1733368602.jpg', '1735373613-1.jpg,1735373613-2.jpg,1735373613-3.jpg', 8, 8, '2024-12-28', '2025-01-04', '2024-12-04 20:16:42', '2024-12-28 01:13:36'),
+(39, '1', '1', '\"fedfssdfcs\"\"', 'sdfsdcf', 100000.00, 90000.00, '1', 'instock', 0, 2, '1735317512.jpg', '', 10, 9, '2024-12-28', '2025-01-11', '2024-12-27 09:38:33', '2024-12-27 21:59:02'),
+(40, '3', '3', '\"sxgvfvgd\"', 'dggfgvfd', 100000.00, 90000.00, '3', 'instock', 0, 1, '1735356147.jpg', '1735356147-1.jpg', 7, 8, '2024-12-28', '2024-12-30', '2024-12-27 20:22:27', '2024-12-27 22:43:26'),
+(41, '4', '4', '\"fedrfe\"', 'rgtergref', 100000.00, 90000.00, '4', 'instock', 0, 3, '1735357333.jpg', '', 7, 9, '2024-12-27', '2024-12-28', '2024-12-27 20:42:14', '2024-12-27 20:45:52'),
+(42, '5', '5', '\"dgidgdgd', 'gdgdgdr', 100000.00, 90000.00, '5', 'outofstock', 0, 0, '1735361989.jpg', '1735361989-1.jpg', 6, 8, '2024-12-28', '2024-12-31', '2024-12-27 21:59:50', '2024-12-27 22:18:04'),
+(43, '6', '6', '\"dgdg', 'dgdgd', 100000.00, 90000.00, '6', 'instock', 0, 4, '1735366004.jpg', '1735366004-1.jpg', 4, 8, '2024-12-28', '2024-12-30', '2024-12-27 23:06:44', '2024-12-27 23:06:44'),
+(44, '7', '7', '\"gsgdg', 'dgdg', 100000.00, 90000.00, '7', 'instock', 0, 7, '1735366689.jpg', '', 10, 9, '2024-12-28', '2024-12-30', '2024-12-27 23:18:10', '2024-12-27 23:18:10'),
+(45, '8', '8', '\"sdfsxdegx', 'cfghcdfbgcf', 100000.00, 90000.00, '8', 'instock', 0, 8, '1735369355.jpg', '1735369355-1.jpg', 4, 9, '2024-12-28', '2024-12-29', '2024-12-28 00:02:35', '2024-12-28 00:02:35'),
+(46, '9', '9', '\"hffh', 'fj', 100000.00, 90000.00, '9', 'instock', 0, 3, '1735376238.jpg', '1735376238-1.jpg', 4, 9, '2024-12-28', '2025-01-04', '2024-12-28 01:57:18', '2024-12-28 01:57:18'),
+(47, '10', '10', '\"dscffcers\"', 'fefecfr', 100000.00, 90000.00, '10', 'outofstock', 0, 5, '1735376396.jpg', '1735376396-1.jpg', 5, 8, '2024-12-28', '2025-01-04', '2024-12-28 01:59:57', '2024-12-28 02:00:08'),
+(48, '11', '11', '\"xasikxcb', 'csdcsdac', 100000.00, 90000.00, '11', 'instock', 0, 5, '1735383902.jpg', '1735383902-1.jpg', 5, 8, '2024-12-28', '2025-01-04', '2024-12-28 04:05:02', '2024-12-28 04:05:02'),
+(49, '12', '12', '\"dfsfsw', 'sdfsedfsw', 100000.00, 90000.00, '12', 'instock', 0, 6, '1735386907.jpg', '1735386907-1.jpg', 10, 8, '2024-12-28', '2025-01-04', '2024-12-28 04:55:07', '2024-12-28 04:55:07');
 
 -- --------------------------------------------------------
 
@@ -473,7 +465,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('7gAADh0xYX2xiigykukzAjf18KFQb4jKzEJSR2iq', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoicUpkZGJiNXlrRzVFMUg0eU5pM1dGa3RjNFdPaU1iTU90VEhVTjRUSCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcm9kdWN0cyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJhdXRoIjthOjE6e3M6MjE6InBhc3N3b3JkX2NvbmZpcm1lZF9hdCI7aToxNzM0MzU4MjM3O319', 1734358258);
+('oTzpsSx7Q30QxBuAtUvp0WXjkQzocwRNp7asSlPR', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSU5rUW94WjBuS2pTV0FaWXAyNHZHOEx3aW1tYngxUTltTkRnb2NBbiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1735387003);
 
 -- --------------------------------------------------------
 
@@ -522,16 +514,13 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `user_id`, `order_id`, `mode`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'cod', 'approved', '2024-11-25 01:54:11', '2024-12-05 18:30:47'),
-(2, 2, 2, 'cod', 'pending', '2024-11-25 02:05:43', '2024-11-25 02:05:43'),
-(3, 2, 3, 'cod', 'pending', '2024-11-25 02:10:43', '2024-11-25 02:10:43'),
-(4, 2, 4, 'cod', 'pending', '2024-11-25 18:13:48', '2024-11-25 18:13:48'),
-(5, 3, 5, 'cod', 'pending', '2024-11-25 19:34:45', '2024-11-25 19:34:45'),
-(6, 2, 6, 'cod', 'pending', '2024-12-02 06:15:21', '2024-12-02 06:15:21'),
 (7, 4, 7, 'cod', 'approved', '2024-12-04 21:42:57', '2024-12-05 06:30:35'),
 (8, 4, 8, 'cod', 'pending', '2024-12-04 22:36:39', '2024-12-04 22:36:39'),
 (9, 4, 9, 'cod', 'pending', '2024-12-05 07:37:40', '2024-12-05 07:37:40'),
-(10, 3, 10, 'cod', 'pending', '2024-12-05 18:28:02', '2024-12-05 18:28:02');
+(15, 4, 15, 'cod', 'pending', '2024-12-27 09:46:09', '2024-12-27 09:46:09'),
+(16, 4, 17, 'cod', 'pending', '2024-12-27 21:55:42', '2024-12-27 21:55:42'),
+(17, 4, 20, 'cod', 'pending', '2024-12-27 22:18:04', '2024-12-27 22:18:04'),
+(18, 4, 23, 'cod', 'approved', '2024-12-27 22:43:26', '2024-12-28 01:34:13');
 
 -- --------------------------------------------------------
 
@@ -557,10 +546,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `mobile`, `email_verified_at`, `password`, `utype`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', '083185279521', NULL, '$2y$12$wEpyHU5ra5/VWohZypAY2udZxKkh8PrWJ48oxRcEckwFmfl4td.UK', 'ADM', NULL, '2024-10-17 09:08:47', '2024-10-17 09:08:47'),
+(1, 'admin', 'admin@gmail.com', '083185279521', NULL, '$2y$12$ZnR/A4G0uxhDJ/Euu6QRbeKOoAqBnximyHzgivIEcx6kxWiCuzssu', 'ADM', NULL, '2024-10-17 09:08:47', '2024-12-27 09:37:48'),
 (2, 'user', 'user@gmail.com', '081234567890', NULL, '$2y$12$A4g.6qhgPw4q2G8m78217O9ks5KNkpd0/nXzWx6i9zIArTbJbsroG', 'USR', NULL, '2024-10-17 09:11:10', '2024-10-17 09:11:10'),
-(3, 'ika', 'ika@gmail.com', '089876543219', NULL, '$2y$12$jur4Yyq1VWDlYO77sRw/EulZD7HFFHxNtld2kXPCvR55rvG5TZLMa', 'USR', NULL, '2024-10-17 19:38:13', '2024-10-17 19:38:13'),
-(4, 'ojak', 'ojak@gmail.com', '098765432190', NULL, '$2y$12$TIojrgQTIMZNhtnjikWbSepo1Dd6zFY4KpPrWFYwloDtQOsJxBX3S', 'USR', NULL, '2024-12-04 21:17:46', '2024-12-04 21:17:46');
+(4, 'ojakkk', 'ojak@gmail.com', '098765432190', NULL, '$2y$12$TIojrgQTIMZNhtnjikWbSepo1Dd6zFY4KpPrWFYwloDtQOsJxBX3S', 'USR', NULL, '2024-12-04 21:17:46', '2024-12-28 00:01:20'),
+(6, 'nelhayatii', 'nel@gmail.com', '098765432112', NULL, '$2y$12$teDNxgSQ3Aewzvjzr4JwpeeC38vayJQeUkhBYDmFGdlP0zyNS.NXy', 'USR', NULL, '2024-12-21 12:19:45', '2024-12-28 00:06:45');
 
 --
 -- Indexes for dumped tables
@@ -712,19 +701,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -754,7 +743,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `month_names`
@@ -766,19 +755,19 @@ ALTER TABLE `month_names`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `slides`
@@ -790,13 +779,13 @@ ALTER TABLE `slides`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

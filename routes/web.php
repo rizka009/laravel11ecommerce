@@ -51,11 +51,18 @@ Route::middleware([ 'auth'])->group(function(){
     Route::get('/account-orders', [UserController::class, 'orders'])->name('user.orders');
     Route::get('/account-orders/{order_id}/details', [UserController::class, 'order_details'])->name('user.order.details');
     Route::put('/account-order/cancel-order', [UserController::class, 'order_cancel'])->name('user.order.cancel');
+    Route::get('/account-details', [UserController::class, 'account_details'])->name('user.account.details');
+    Route::post('/account-details', [UserController::class, 'update_account_details'])->name('user.account.update');
+
+    
 
 });
 
 Route::middleware([ 'auth',AuthAdmin::class])->group(function(){
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+    Route::post('/admin/settings', [AdminController::class, 'updateSettings'])->name('admin.settings.update');
+
     Route::get('/admin/brands', [AdminController::class,'brands'])->name('admin.brands');
     Route::get('/admin/brand/add', [AdminController::class, 'add_brand'])->name('admin.brand.add');
     Route::post('/admin/brand/store', [AdminController::class, 'brand_store'])->name('admin.brand.store');
@@ -76,6 +83,7 @@ Route::middleware([ 'auth',AuthAdmin::class])->group(function(){
     Route::get('/admin/product/{id}/edit', [AdminController::class, 'product_edit'])->name('admin.product.edit');
     Route::put('/admin/product/update', [AdminController::class, 'product_update'])->name('admin.product.update');
     Route::delete('/admin/product/{id}/delete', [AdminController::class, 'product_delete'])->name('admin.product.delete');
+    Route::get('/admin/product/{id}/details', [AdminController::class, 'product_details'])->name('admin.product.details');
 
     Route::get('/admin/coupons', [AdminController::class, 'coupons'])->name('admin.coupons');
     Route::get('/admin/coupon/add', [AdminController::class, 'coupon_add'])->name('admin.coupon.add');
@@ -97,6 +105,9 @@ Route::middleware([ 'auth',AuthAdmin::class])->group(function(){
 
     Route::get('/admin/contact', [AdminController::class, 'contacts'])->name('admin.contacts');
     Route::delete('/admin/contact/{id}/delete', [AdminController::class, 'contact_delete'])->name('admin.contact.delete');
+
+    Route::get('/admin/users', [AdminController::class,'users'])->name('admin.users');
+    Route::delete('/admin/users/{id}/delete', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
 
 
 });

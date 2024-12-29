@@ -7,6 +7,7 @@ use App\Models\Address;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,11 @@ class CartController extends Controller
 
     public function add_to_cart(Request $request)
     {
+        if (!Auth::check())
+        {
+            return redirect()->route('login');
+        }
+
         Cart::instance('cart')->add($request->id,$request->name,$request->quantity,$request->price)->associate('App\Models\Product');
         return redirect()->back();
     }
@@ -129,10 +135,9 @@ class CartController extends Controller
     public function place_an_order(Request $request)
     {
         $user_id = Auth::user()->id;
-        $address = Address::where('user_id',$user_id)->where('isdefault',true)->first();
+        $address = Address::where('user_id', $user_id)->where('isdefault', true)->first();
 
-        if (!$address)
-        {
+        if (!$address) {
             $request->validate([
                 'name' => 'required|max:100',
                 'phone' => 'required|numeric|digits:10',
@@ -161,7 +166,7 @@ class CartController extends Controller
 
         $this->setAmountforCheckout();
 
-
+        // Mulai proses order
         $order = new Order();
         $order->user_id = $user_id;
         $order->subtotal = Session::get('checkout')['subtotal'];
@@ -179,8 +184,26 @@ class CartController extends Controller
         $order->zip = $address->zip;
         $order->save();
 
-        foreach (Cart::instance('cart')->content() as $item)
-        {
+        // Proses Order Item
+        foreach (Cart::instance('cart')->content() as $item) {
+            $product = Product::find($item->id);
+
+            // Validasi stok
+            if ($product->quantity < $item->qty) {
+                return redirect()->back()->with('error', "Stok produk {$product->name} tidak mencukupi.");
+            }
+
+            // Validasi expiry date
+            if (Carbon::now()->greaterThan($product->expiry_date)) {
+                return redirect()->back()->with('error', "Produk {$product->name} telah kedaluwarsa.");
+            }
+
+            // Kurangi stok produk
+            $product->quantity -= $item->qty;
+            $product->stock_status = $product->quantity > 0 ? 'instock' : 'outofstock';
+            $product->save();
+
+            // Simpan Order Item
             $orderItem = new OrderItem();
             $orderItem->product_id = $item->id;
             $orderItem->order_id = $order->id;
@@ -189,33 +212,30 @@ class CartController extends Controller
             $orderItem->save();
         }
 
-        if ($request->mode == "card")
-        {
-            //
-        }
-        elseif ($request->mode == "paypal")
-        {
-            //
-        }
-        elseif ($request->mode == "cod")
-        {
+        // Proses pembayaran
+        if ($request->mode == "card") {
+            // Integrasikan pembayaran kartu
+        } elseif ($request->mode == "paypal") {
+            // Integrasikan pembayaran PayPal
+        } elseif ($request->mode == "cod") {
             $transaction = new Transaction();
             $transaction->user_id = $user_id;
             $transaction->order_id = $order->id;
             $transaction->mode = $request->mode;
             $transaction->status = "pending";
             $transaction->save();
-
         }
 
-
+        // Kosongkan keranjang
         Cart::instance('cart')->destroy();
         Session::forget('checkout');
         Session::forget('coupon');
         Session::forget('discounts');
-        Session::put('order_id',$order->id);
+        Session::put('order_id', $order->id);
+
         return redirect()->route('cart.order.confirmation');
     }
+
 
     public function setAmountforCheckout()
     {
