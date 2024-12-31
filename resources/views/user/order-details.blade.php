@@ -265,6 +265,35 @@
                     </table>
                 </div>
 
+                <div class="wg-box mt-5">
+                    <h5>Upload Bukti Transfer</h5>
+                    <h6>Rekening</h6>
+                        <p>BRI : 7652-0101-9995-534 / N: karin</p>
+                        <p>Mandiri : 1110022701855 / N: karin</p>
+                        <p>Dana : 083185279522 / N: karin</p>
+                    <!-- Form Upload -->
+                    <div class="me-3">
+                        <form action="{{ route('user.upload.transfer.proof', ['order_id' => $transaction->order_id]) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <input type="file" name="transfer_proof" class="form-control" accept="image/*" required>
+                            </div>
+                            <input type="hidden" name="transaction_id" value="{{ $transaction->id }}">
+                            <button type="submit" class="btn btn-primary mt-3">Upload</button>
+                        </form>
+                    </div>
+
+                    <!-- Tampilkan Gambar -->
+                    <div>
+                        <h5>Bukti Transfer</h5>
+                        @if($transaction->transfer_proof)
+                        <img src="{{ asset($transaction->transfer_proof) }}" alt="Bukti Transfer" style="max-width: 200px; max-height: 200px;" class="img-thumbnail">
+                        @else
+                            <p class="text-muted">Belum ada bukti transfer.</p>
+                        @endif
+                    </div>
+                </div>
+
                 @if ($order->status == 'ordered')
                 <div class="wg-box mt-5 text-right">
                     <form action="{{ route('user.order.cancel') }}" method="POST">
@@ -276,6 +305,10 @@
                 </div>
                 @endif
             </div>
+
+
+
+
 
         </div>
     </section>

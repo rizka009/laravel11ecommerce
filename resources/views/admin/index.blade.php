@@ -137,7 +137,7 @@
 
             <div class="wg-box">
                 <div class="flex items-center justify-between">
-                    <h5>Monthly Revenue</h5>
+                    <h3>Pendapatan Bulanan</h3>
                 </div>
                 <div class="flex flex-wrap gap40">
                     <div>
@@ -215,7 +215,7 @@
                                     <th class="text-center">Order Date</th>
                                     <th class="text-center">Total Items</th>
                                     <th class="text-center">Delivered On</th>
-                                    <th></th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

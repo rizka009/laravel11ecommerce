@@ -19,21 +19,18 @@ class UserController extends Controller
 
     public function orders()
     {
-        $orders = Order::where('user_id',Auth::user()->id)->orderBy('created_at','DESC')->paginate(10);
-        return view('user.orders',compact('orders'));
+        $orders = Order::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->paginate(10);
+        return view('user.orders', compact('orders'));
     }
 
     public function order_details($order_id)
     {
         $order = Order::where('user_id', Auth::user()->id)->where('id', $order_id)->first();
-        if ($order)
-        {
+        if ($order) {
             $orderItems = OrderItem::where('order_id', $order->id)->orderBy('id', 'asc')->paginate(12);
             $transaction = Transaction::where('order_id', $order->id)->first();
             return view('user.order-details', compact('order', 'orderItems', 'transaction'));
-        }
-        else
-        {
+        } else {
             return redirect()->route('login');
         }
     }
@@ -44,7 +41,7 @@ class UserController extends Controller
         $order->status = "canceled";
         $order->canceled_date = Carbon::now();
         $order->save();
-        return back()->with('status','Order has been cancelled successfully!');
+        return back()->with('status', 'Order has been cancelled successfully!');
     }
 
     public function account_details()
@@ -82,6 +79,33 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('user.account.details')->with('status', 'Account details updated successfully!');
     }
-    
 
+    public function uploadTransferProof(Request $request)
+    {
+        $request->validate([
+            'transfer_proof' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Maksimal ukuran 2MB
+        ]);
+
+        $transaction = Transaction::findOrFail($request->transaction_id);
+
+        if ($request->hasFile('transfer_proof')) {
+            // Dapatkan file dari request
+            $file = $request->file('transfer_proof');
+
+            // Tentukan lokasi penyimpanan
+            $destinationPath = public_path('uploads/transaksi'); // Langsung di folder public/uploads/transaksi
+            $fileName = time() . '_' . $file->getClientOriginalName(); // Buat nama unik untuk file
+
+            // Pindahkan file ke folder tujuan
+            $file->move($destinationPath, $fileName);
+
+            // Simpan path relatif ke database (hanya path mulai dari uploads)
+            $transaction->transfer_proof = 'uploads/transaksi/' . $fileName;
+            $transaction->save();
+
+            return back()->with('status', 'Transfer proof uploaded successfully!');
+        }
+
+        return back()->withErrors(['transfer_proof' => 'Failed to upload transfer proof.']);
+    }
 }

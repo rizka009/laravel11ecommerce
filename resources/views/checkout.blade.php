@@ -118,7 +118,7 @@
                 </div>
                 </div>
                 @endif
-                
+
             </div>
             <div class="checkout__totals-wrapper">
                 <div class="sticky-content">
@@ -197,7 +197,7 @@
                     @endif
                 </div>
                 <div class="checkout__payment-methods">
-                    <div class="form-check">
+                    {{-- <div class="form-check">
                     <input class="form-check-input form-check-input_fill" type="radio" name="mode" id="mode1" value="card">
                     <label class="form-check-label" for="mode1">
                         Debit or Credit Card
@@ -208,18 +208,19 @@
                         <label class="form-check-label" for="mode2">
                         Paypal
                         </label>
-                    </div>
+                    </div> --}}
                     <div class="form-check">
-                    <input class="form-check-input form-check-input_fill" type="radio" name="mode" id="mode3" value="cod">
+                    <input class="form-check-input form-check-input_fill" type="radio" name="mode" id="mode3" value="transfer">
                     <label class="form-check-label" for="mode3">
-                        Cash on delivery
+                        Transfer
                     </label>
                     </div>
 
                     <div class="policy-text">
-                    Your personal data will be used to process your order, support your experience throughout this
-                    website, and for other purposes described in our <a href="terms.html" target="_blank">privacy
-                        policy</a>.
+                        <h4>Rekening</h4>
+                        <p>BRI : 7652-0101-9995-534 / N: karin</p>
+                        <p>Mandiri : 1110022701855 / N: karin</p>
+                        <p>Dana : 083185279522 / N: karin</p>
                     </div>
                 </div>
                 <button class="btn btn-primary btn-checkout">PLACE ORDER</button>

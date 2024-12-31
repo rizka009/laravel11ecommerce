@@ -59,6 +59,9 @@ Route::middleware([ 'auth'])->group(function(){
     Route::get('/account-details', [UserController::class, 'account_details'])->name('user.account.details');
     Route::post('/account-details', [UserController::class, 'update_account_details'])->name('user.account.update');
 
+    Route::post('/account-orders/{order_id}/upload-transfer-proof', [UserController::class, 'uploadTransferProof'])->name('user.upload.transfer.proof');
+
+
 
 
 });

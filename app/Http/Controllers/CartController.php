@@ -217,7 +217,7 @@ class CartController extends Controller
             // Integrasikan pembayaran kartu
         } elseif ($request->mode == "paypal") {
             // Integrasikan pembayaran PayPal
-        } elseif ($request->mode == "cod") {
+        } elseif ($request->mode == "transfer") {
             $transaction = new Transaction();
             $transaction->user_id = $user_id;
             $transaction->order_id = $order->id;

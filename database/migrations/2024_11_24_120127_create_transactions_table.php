@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('order_id')->unsigned();
-            $table->enum('mode',['cod','card','paypal']);
+            $table->enum('mode',['transfer','card','paypal']);
             $table->enum('status',['pending','approved','declined','refunded'])->default('pending');
+            $table->string('transfer_proof')->nullable()->after('status');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

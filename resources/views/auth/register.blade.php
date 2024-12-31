@@ -43,7 +43,7 @@
               <div class="form-floating mb-3">
                 <input id="mobile" type="text" class="form-control form-control_gray @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}"
                   required="" autocomplete="mobile">
-                <label for="mobile">Mobile *</label>
+                <label for="mobile">Phone *</label>
                 @error('mobile')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
