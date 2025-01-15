@@ -108,4 +108,26 @@ class UserController extends Controller
 
         return back()->withErrors(['transfer_proof' => 'Failed to upload transfer proof.']);
     }
+
+    public function order_complete(Request $request)
+{
+    // Mencari order berdasarkan order_id dan user_id
+    $order = Order::where('user_id', Auth::user()->id)
+                  ->where('id', $request->order_id)
+                  ->where('status', 'ordered') // Pastikan status pesanan adalah "ordered"
+                  ->first();
+
+    // Jika order ditemukan, update status menjadi "completed"
+    if ($order) {
+        $order->status = 'completed';  // Mengubah status menjadi 'completed'
+        $order->completed_date = Carbon::now();  // Menambahkan tanggal selesai
+        $order->save();
+
+        return back()->with('status', 'Order status updated to completed successfully!');
+    }
+
+    // Jika pesanan tidak ditemukan atau statusnya bukan "ordered"
+    return back()->withErrors(['order' => 'Order not found or already completed.']);
+}
+
 }

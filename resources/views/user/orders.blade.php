@@ -65,35 +65,35 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($orders as $order)
-                                    <tr>
-                                        <td class="text-center">{{ $order->id }}</td>
-                                        <td class="text-center">{{ $order->name }}</td>
-                                        <td class="text-center">{{ $order->phone }}</td>
-                                        <td class="text-center">Rp. {{ $order->subtotal }}</td>
-                                        <td class="text-center">Rp. {{ $order->tax }}</td>
-                                        <td class="text-center">Rp. {{ $order->total }}</td>
-                                        <td class="text-center">
-                                            @if ($order->status == 'delivered')
-                                                <span class="bedge bg-success">Delivered</span>
-                                            @elseif ($order->status == 'canceled')
-                                                <span class="bedge bg-danger">Canceled</span>
-                                            @else
-                                                <span class="bedge bg-warning">Ordered</span>
-                                            @endif
-                                        </td>
-                                        <td class="text-center">{{ $order->created_at }}</td>
-                                        <td class="text-center">{{ $order->orderItems->count() }}</td>
-                                        <td class="text-center">{{ $order->delivered_date }}</td>
-                                        <td class="text-center">
-                                            <a href="{{ route('user.order.details',['order_id'=>$order->id]) }}">
-                                                <div class="list-icon-function view-icon">
-                                                    <div class="item eye">
-                                                        <i class="fa fa-eye"></i>
+                                        <tr>
+                                            <td class="text-center">{{ $order->id }}</td>
+                                            <td class="text-center">{{ $order->name }}</td>
+                                            <td class="text-center">{{ $order->phone }}</td>
+                                            <td class="text-center">Rp. {{ number_format($order->subtotal, 2, ',', '.') }}</td> <!-- Memformat subtotal -->
+                                            <td class="text-center">Rp. {{ number_format($order->tax, 2, ',', '.') }}</td><!-- Memformat tax -->
+                                            <td class="text-center">Rp. {{ number_format($order->total, 2, ',', '.') }}</td><!-- Memformat total -->
+                                            <td class="text-center">
+                                                @if ($order->status == 'delivered')
+                                                    <span class="bedge bg-success">Delivered</span>
+                                                @elseif ($order->status == 'canceled')
+                                                    <span class="bedge bg-danger">Canceled</span>
+                                                @else
+                                                    <span class="bedge bg-warning">Ordered</span>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">{{ $order->created_at }}</td>
+                                            <td class="text-center">{{ $order->orderItems->count() }}</td>
+                                            <td class="text-center">{{ $order->delivered_date }}</td>
+                                            <td class="text-center">
+                                                <a href="{{ route('user.order.details', ['order_id' => $order->id]) }}">
+                                                    <div class="list-icon-function view-icon">
+                                                        <div class="item eye">
+                                                            <i class="fa fa-eye"></i>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>

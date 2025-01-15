@@ -39,71 +39,71 @@
           <p>Thank you. Your order has been received.</p>
         </div>
         <div class="order-info">
-          <div class="order-info__item">
-            <label>Order Number</label>
-            <span>{{ $order->id }}</span>
-          </div>
-          <div class="order-info__item">
-            <label>Date</label>
-            <span>{{ $order->created_at }}</span>
-          </div>
-          <div class="order-info__item">
-            <label>Total</label>
-            <span>Rp. {{ $order->total }}</span>
-          </div>
-          <div class="order-info__item">
-            <label>Paymetn Method</label>
-            <span>{{ $order->transaction->mode }}</span>
-          </div>
+            <div class="order-info__item">
+                <label>Order Number</label>
+                <span>{{ $order->id }}</span>
+            </div>
+            <div class="order-info__item">
+                <label>Date</label>
+                <span>{{ $order->created_at }}</span>
+            </div>
+            <div class="order-info__item">
+                <label>Total</label>
+                <span>Rp. {{ number_format($order->total, 2, ',', '.') }}</span> <!-- Format total -->
+            </div>
+            <div class="order-info__item">
+                <label>Payment Method</label>
+                <span>{{ $order->transaction->mode }}</span>
+            </div>
         </div>
         <div class="checkout__totals-wrapper">
-          <div class="checkout__totals">
-            <h3>Order Details</h3>
-            <table class="checkout-cart-items">
-              <thead>
-                <tr>
-                  <th>PRODUCT</th>
-                  <th>SUBTOTAL</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($order->orderItems as $item)
-                <tr>
-                  <td>
-                    {{ $item->product->name }} x {{ $item->quantity }}
-                  </td>
-                  <td class="text-right">
-                    Rp. {{ $item->price }}
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-            <table class="checkout-totals">
-              <tbody>
-                <tr>
-                  <th>SUBTOTAL</th>
-                  <td class="text-right">Rp. {{ $order->subtotal }}</td>
-                </tr>
-                <tr>
-                    <th>DISCOUNT</th>
-                    <td class="text-right">Rp. {{ $order->discount }}</td>
-                  </tr>
-                <tr>
-                  <th>SHIPPING</th>
-                  <td class="text-right">Free shipping</td>
-                </tr>
-                <tr>
-                  <th>VAT</th>
-                  <td class="text-right">Rp. {{ $order->tax }}</td>
-                </tr>
-                <tr>
-                  <th>TOTAL</th>
-                  <td class="text-right">Rp. {{ $order->total }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+            <div class="checkout__totals">
+                <h3>Order Details</h3>
+                <table class="checkout-cart-items">
+                    <thead>
+                        <tr>
+                            <th>PRODUCT</th>
+                            <th>SUBTOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($order->orderItems as $item)
+                        <tr>
+                            <td>
+                                {{ $item->product->name }} x {{ $item->quantity }}
+                            </td>
+                            <td class="text-right">
+                                Rp. {{ number_format($item->price, 2, ',', '.') }}
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <table class="checkout-totals">
+                    <tbody>
+                        <tr>
+                            <th>SUBTOTAL</th>
+                            <td class="text-right">Rp. {{ number_format($order->subtotal, 2, ',', '.') }}</td>
+                        </tr>
+                        <tr>
+                            <th>DISCOUNT</th>
+                            <td class="text-right">Rp. {{ number_format($order->discount, 2, ',', '.') }}</td>
+                        </tr>
+                        <tr>
+                            <th>SHIPPING</th>
+                            <td class="text-right">Free shipping</td>
+                        </tr>
+                        <tr>
+                            <th>VAT</th>
+                            <td class="text-right">Rp. {{ number_format($order->tax, 2, ',', '.') }}</td>
+                        </tr>
+                        <tr>
+                            <th>TOTAL</th>
+                            <td class="text-right">Rp. {{ number_format($order->total, 2, ',', '.') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
       </div>
     </section>

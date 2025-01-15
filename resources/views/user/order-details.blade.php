@@ -189,7 +189,7 @@
                                                 class="body-title-2">{{ $item->product->name }}</a>
                                         </div>
                                     </td>
-                                    <td class="text-center">Rp. {{ $item->price }}</td>
+                                    <td class="text-center">Rp. {{ number_format($item->price, 2, ',', '.') }}</td>
                                     <td class="text-center">{{ $item->quantity }}</td>
                                     <td class="text-center">{{ $item->product->SKU }}</td>
                                     <td class="text-center">{{ $item->product->category->name }}</td>
@@ -219,14 +219,14 @@
                     <h5>Shipping Address</h5>
                     <div class="my-account__address-item col-md-6">
                         <div class="my-account__address-item__detail">
-                            <p>{{ $order->name }}</p>
-                            <p>{{ $order->address }}</p>
-                            <p>{{ $order->locality }}, DEF</p>
-                            <p>{{ $order->city }}, {{ $order->country }}</p>
+                            <p>Penerima : {{ $order->name }}</p>
+                            <p>Alamat: {{ $order->locality }},{{ $order->address }},{{ $order->city }}, {{ $order->country }},{{ $order->zip }}</p>
+                            {{-- <p>{{ $order->locality }}</p>
+                            <p>{{ $order->city }}, {{ $order->country }}</p> --}}
                             <p>{{ $order->landmark }}</p>
-                            <p>{{ $order->zip }}</p>
+                            {{-- <p>{{ $order->zip }}</p> --}}
                             <br>
-                            <p>Mobile : {{ $order->name }}</p>
+                            <p>Phone : {{ $order->phone }}</p>
                         </div>
                     </div>
                 </div>
@@ -237,15 +237,15 @@
                         <tbody>
                             <tr>
                                 <th>Subtotal</th>
-                                <td>Rp. {{ $order->subtotal }}</td>
+                                <td>Rp. {{ number_format($order->subtotal, 2, ',', '.') }}</td>
                                 <th>Tax</th>
-                                <td>Rp. {{ $order->tax }}</td>
+                                <td>Rp. {{ number_format($order->tax, 2, ',', '.') }}</td>
                                 <th>Discount</th>
-                                <td>Rp. {{ $order->discount }}</td>
+                                <td>Rp. {{ number_format($order->discount, 2, ',', '.') }}</td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td>Rp. {{ $order->total }}</td>
+                                <td>Rp. {{ number_format($order->total, 2, ',', '.') }}</td>
                                 <th>Payment Mode</th>
                                 <td>{{ $transaction->mode }}</td>
                                 <th>Status</th>

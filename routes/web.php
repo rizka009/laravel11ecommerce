@@ -58,6 +58,7 @@ Route::middleware([ 'auth'])->group(function(){
     Route::put('/account-order/cancel-order', [UserController::class, 'order_cancel'])->name('user.order.cancel');
     Route::get('/account-details', [UserController::class, 'account_details'])->name('user.account.details');
     Route::post('/account-details', [UserController::class, 'update_account_details'])->name('user.account.update');
+    Route::post('/order/complete', [UserController::class, 'order_complete'])->name('user.order.complete');
 
     Route::post('/account-orders/{order_id}/upload-transfer-proof', [UserController::class, 'uploadTransferProof'])->name('user.upload.transfer.proof');
 

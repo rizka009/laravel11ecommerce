@@ -66,53 +66,59 @@ class CartController extends Controller
     public function apply_coupon_code(Request $request)
     {
         $coupon_code = $request->coupon_code;
-        if (isset($coupon_code))
-        {
+
+        if (isset($coupon_code)) {
+            $cartSubtotal = floatval(str_replace(',', '', Cart::instance('cart')->subtotal()));
+
             $coupon = Coupon::where('code', $coupon_code)
-            ->where('expiry_date', '>=', Carbon::today())
-            ->where('cart_value', '<=', Cart::instance('cart')->subtotal())
-            ->first();
+                ->where('expiry_date', '>=', Carbon::today()->toDateString())
+                ->where('cart_value', '<=', $cartSubtotal)
+                ->first();
+
             if (!$coupon) {
-                return redirect()->back()->with('error','Invalid Coupon Code!');
-            }else {
-                Session::put('coupon',[
+                return redirect()->back()->withErrors(['error' => 'Kupon tidak valid atau telah kedaluwarsa.']);
+            } else {
+                Session::put('coupon', [
                     'code' => $coupon->code,
                     'type' => $coupon->type,
                     'value' => $coupon->value,
                     'cart_value' => $coupon->cart_value
                 ]);
                 $this->calculateDiscount();
-                return redirect()->back()->with('success','Coupon had been applied!');
+                return redirect()->back()->with('success', 'Kupon berhasil diterapkan!');
             }
-        }else {
-            return redirect()->back()->with('error','Invalid Coupon Code!');
+        } else {
+            return redirect()->back()->withErrors(['error' => 'Kode kupon tidak boleh kosong.']);
         }
     }
 
     public function calculateDiscount()
     {
         $discount = 0;
-        if (Session::has('coupon'))
-        {
-            if (Session::get('coupon')['type']=='fixed')
-            {
-                $discount = Session::get('coupon')['value'];
-            }else {
-                $discount = (Cart::instance('cart')->subtotal() * Session::get('coupon')['value'])/100;
+        if (Session::has('coupon')) {
+            $coupon = Session::get('coupon');
+            $cartSubtotal = floatval(str_replace(',', '', Cart::instance('cart')->subtotal()));
+
+            if ($coupon['type'] == 'fixed') {
+                $discount = $coupon['value'];
+            } else {
+                $discount = ($cartSubtotal * $coupon['value']) / 100;
             }
 
-            $subtotalAfterDiscount = Cart::instance('cart')->subtotal() - $discount;
-            $taxAfterDiscount = ($subtotalAfterDiscount * config('cart.tax'))/100;
+            $subtotalAfterDiscount = $cartSubtotal - $discount;
+            $taxAfterDiscount = ($subtotalAfterDiscount * config('cart.tax')) / 100;
             $totalAfterDiscount = $subtotalAfterDiscount + $taxAfterDiscount;
 
-            Session::put('discounts',[
-                'discount' => number_format(floatval($discount),2,'.',''),
-                'subtotal' => number_format(floatval($subtotalAfterDiscount),2,'.',''),
-                'tax' => number_format(floatval($taxAfterDiscount),2,'.',''),
-                'total' => number_format(floatval($totalAfterDiscount),2,'.','')
+            // Simpan nilai discount, subtotal, tax, dan total dalam session
+            Session::put('discounts', [
+                'discount' => number_format($discount, 2, '.', ''),
+                'subtotal' => number_format($subtotalAfterDiscount, 2, '.', ''),
+                'tax' => number_format($taxAfterDiscount, 2, '.', ''),
+                'total' => number_format($totalAfterDiscount, 2, '.', ''),
             ]);
         }
     }
+
 
     public function remove_coupon_code()
     {
@@ -238,41 +244,40 @@ class CartController extends Controller
 
 
     public function setAmountforCheckout()
+{
+    if (!Cart::instance('cart')->content()->count() > 0)
     {
-        if (!Cart::instance('cart')->content()->count() > 0)
-        {
-            Session::forget('checkout');
-            return;
-        }
-
-        if (Session::has('coupon'))
-        {
-            $subtotal = str_replace(',', '', Cart::instance('cart')->subtotal());
-            $tax = str_replace(',', '', Cart::instance('cart')->tax());
-            $total = str_replace(',', '', Cart::instance('cart')->total());
-
-            Session::put('checkout', [
-                'discount' => Session::get('discounts')['discount'],
-                'subtotal' => $subtotal,
-                'tax' => $tax,
-                'total' => $total,
-            ]);
-        }
-        else
-        {
-            $subtotal = str_replace(',', '', Cart::instance('cart')->subtotal());
-            $tax = str_replace(',', '', Cart::instance('cart')->tax());
-            $total = str_replace(',', '', Cart::instance('cart')->total());
-
-            Session::put('checkout', [
-                'discount' => 0,
-                'subtotal' => $subtotal,
-                'tax' => $tax,
-                'total' => $total,
-            ]);
-        }
+        Session::forget('checkout');
+        return;
     }
 
+    // Memastikan checkout diupdate sesuai dengan session discounts
+    if (Session::has('discounts')) {
+        $subtotal = Session::get('discounts')['subtotal'];
+        $tax = Session::get('discounts')['tax'];
+        $total = Session::get('discounts')['total'];
+        $discount = Session::get('discounts')['discount'];
+
+        Session::put('checkout', [
+            'discount' => $discount,
+            'subtotal' => $subtotal,
+            'tax' => $tax,
+            'total' => $total,
+        ]);
+    } else {
+        // Jika tidak ada kupon, simpan nilai default tanpa diskon
+        $subtotal = str_replace(',', '', Cart::instance('cart')->subtotal());
+        $tax = str_replace(',', '', Cart::instance('cart')->tax());
+        $total = str_replace(',', '', Cart::instance('cart')->total());
+
+        Session::put('checkout', [
+            'discount' => 0,
+            'subtotal' => $subtotal,
+            'tax' => $tax,
+            'total' => $total,
+        ]);
+    }
+}
     public function editAddress($id)
 {
     $address = Address::findOrFail($id);
