@@ -1,54 +1,24 @@
-<p style="text-align: center;">(https://github.com/user-attachments/assets/f56b54f5-ec1a-4700-b883-4046bd4f15a7)
-</p>
+Ini adalah Latihan Flutter membuat data wisata <br>
+data wisata yang saya buat adalah data wisata pendakian gunung
+1. menampilkan daftar gunung
+  ![image](https://github.com/user-attachments/assets/9bf93bbb-bee0-48c7-a9ff-49fec9912394)
 
-<p style="text-align: center;">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+2. kita bisa melihat detail
+   ![image](https://github.com/user-attachments/assets/abcf35ba-226e-4548-936c-f89f8d0b1321)
 
-## User
+3. kita bisa langsung membuka map
+   ![image](https://github.com/user-attachments/assets/744c1569-e9a0-4700-a353-ba11af459aba)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+4. kita bisa update data wisata
+   ![image](https://github.com/user-attachments/assets/19191aa5-179d-42d9-a220-821c9cadb767)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+5. kita bisa menambahkan data wisata
+   ![image](https://github.com/user-attachments/assets/89351fe4-0fbe-404e-971d-e08698a5bc83)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+6. kita bisa menghapus data wisata
+   ![image](https://github.com/user-attachments/assets/802c47fd-1bcf-4ec0-80bc-0461ad04fba0)
 
-## Learning Laravel
+7. kita bisa membuka map secara keseluruhan
+   ![image](https://github.com/user-attachments/assets/30137c3f-800d-4032-8bd5-e10bc5e7c552)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Admin
 
